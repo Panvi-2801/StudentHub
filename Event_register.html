@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - StudentHub Portal</title>
+    <title>Event Registration - StudentHub Portal</title>
 </head>
 <body bgcolor="#F8FAFC" text="#0F172A" style="margin: 0; padding: 0;">
 
+    
     <header>
         <table width="100%" bgcolor="#0B2545" cellpadding="15" style="border-collapse: collapse;">
             <tr>
+                
                 <td width="20%" align="left">
                     <img src="logo.jpeg" alt="StudentHub Logo" width="100" height="70">
                 </td>
+            
+                
                 <td width="60%" align="center">
                     <font color="#FFFFFF">
                         <h1>WELCOME TO STUDENTHUB PORTAL</h1>
@@ -23,6 +27,8 @@
                         </p>
                     </font>
                 </td>
+                
+               
                 <td width="20%" align="right">
                     <img src="logo.jpeg" alt="StudentHub Logo" width="100" height="70">
                 </td>
@@ -48,63 +54,79 @@
     </nav>
 
     <main>
-        <section align="center" style="padding: 60px 15px;">
-            <form action="Dashboard.html" method="POST" style="display: inline-block; width: 100%; max-width: 550px;">
-                <table width="100%" cellpadding="15" style="border-collapse: collapse; border: 2px solid #CBD5E1; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0,0,0,0.08);" bgcolor="#FFFFFF">
+     
+        <section align="center" style="padding: 40px 15px;">
+            <form action="Event.html" method="POST" style="display: inline-block; width: 100%; max-width: 750px;">
+                <table width="100%" cellpadding="18" style="border-collapse: collapse; border: 2px solid #CBD5E1; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0,0,0,0.08);" bgcolor="#FFFFFF">
                     
-                    <tr bgcolor="#F1F5F9" style="border-bottom: 1px solid #CBD5E1;">
+                    
+                    <tr bgcolor="#F1F5F9" style="border-bottom: 2px solid #CBD5E1;">
                         <td colspan="2" align="center" style="padding: 20px;">
                             <font color="#0B2545">
-                                <h2 style="margin: 0; font-size: 24px;">🔐 Login to your account</h2>
+                                <h1 style="margin: 0; font-size: 26px;">🎟️ Event Entry Pass Registration</h1>
+                                <p style="margin: 5px 0 0 0;"><font color="#0284C7"><b>Tech & Innovation Symposium 2026</b></font></p>
                             </font>
                         </td>
                     </tr>
 
+                   
+                    <tr style="border-bottom: 1px solid #E2E8F0;">
+                        <td width="50%" align="left" style="border-right: 1px solid #E2E8F0;">
+                            <label for="fullname"><b><font color="#0B2545">👤 Full Name:</font></b></label><br><br>
+                            <input type="text" id="fullname" name="fullname" placeholder="Enter Full Name" required style="width: 90%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 14px;">
+                        </td>
+                        <td width="50%" align="left">
+                            <label for="sid"><b><font color="#0B2545">🆔 Student ID / Enrolment No:</font></b></label><br><br>
+                            <input type="text" id="sid" name="studentid" placeholder="e.g. 25CS075" required style="width: 90%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 14px;">
+                        </td>
+                    </tr>
+
+                    
+                    <tr style="border-bottom: 1px solid #E2E8F0;">
+                        <td width="50%" align="left" style="border-right: 1px solid #E2E8F0;">
+                            <label for="email"><b><font color="#0B2545">✉️ Email ID:</font></b></label><br><br>
+                            <input type="email" id="email" name="email" placeholder="student@example.com" required style="width: 90%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 14px;">
+                        </td>
+                        <td width="50%" align="left">
+                            <label for="phone"><b><font color="#0B2545">📞 Phone Number:</font></b></label><br><br>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter Contact Number" required style="width: 90%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 14px;">
+                        </td>
+                    </tr>
+
+                    
+                    <tr style="border-bottom: 1px solid #E2E8F0;">
+                        <td width="50%" align="left" style="border-right: 1px solid #E2E8F0;">
+                            <label for="workshop"><b><font color="#0B2545">💻 Preferred Track/Workshop:</font></b></label><br><br>
+                            <select id="workshop" name="workshop" style="width: 95%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 14px; background-color: #FFFFFF;">
+                                <option value="ai">AI & Machine Learning</option>
+                                <option value="web">Modern Web Development</option>
+                                <option value="robotics">Robotics & Embedded Systems</option>
+                            </select>
+                        </td>
+                        <td width="50%" align="left">
+                            <label for="mode"><b><font color="#0B2545">🎓 Mode of Attendance:</font></b></label><br><br>
+                            <select id="mode" name="mode" style="width: 95%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 14px; background-color: #FFFFFF;">
+                                <option value="in-person">Offline (Campus Auditorium)</option>
+                                <option value="online">Online Stream</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                 
                     <tr>
-                        <td width="35%" align="right" style="padding-top: 25px;">
-                            <label for="email"><b><font color="#0B2545">✉️ Email id :</font></b></label>
-                        </td>
-                        <td width="65%" align="left" style="padding-top: 25px;">
-                            <input type="email" id="email" name="email" placeholder="Enter Email" required style="width: 85%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 14px;">
-                        </td>
-                    </tr>
-
-                    <tr style="border-bottom: 1px solid #E2E8F0;">
-                        <td width="35%" align="right" style="padding-bottom: 25px;">
-                            <label for="pwd"><b><font color="#0B2545">🔒 Password :</font></b></label>
-                        </td>
-                        <td width="65%" align="left" style="padding-bottom: 25px;">
-                            <input type="password" id="pwd" name="password" placeholder="Enter Password" required style="width: 85%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 14px;">
-                        </td>
-                    </tr>
-
-                    <tr style="border-bottom: 1px solid #E2E8F0;">
-                        <td colspan="2" align="center" style="padding: 15px;">
-                            <a href="Setting.html" style="text-decoration: none;"><font color="#0284C7"><b>Forgot Password ?</b></font></a>
-                        </td>
-                    </tr>
-
-                    <tr style="border-bottom: 1px solid #E2E8F0;">
-                        <td colspan="2" align="center" style="padding: 20px;">
+                        <td colspan="2" align="center" style="padding: 25px;">
                             <button type="submit" 
                                     style="background-color: #0284C7; 
                                            color: white; 
                                            border: none; 
-                                           padding: 12px 60px; 
+                                           padding: 14px 50px; 
                                            font-size: 16px; 
                                            font-weight: bold; 
-                                           border-radius: 6px; 
+                                           border-radius: 8px; 
                                            cursor: pointer;
                                            box-shadow: 0px 2px 6px rgba(2, 132, 199, 0.3);">
-                                Login
+                                Confirm & Get Event Pass →
                             </button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2" align="center" style="padding: 20px;">
-                            <font color="#475569">Don't have an account? </font>
-                            <a href="Register.html" style="text-decoration: none;"><font color="#0284C7"><b>Sign Up</b></font></a>
                         </td>
                     </tr>
 
