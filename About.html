@@ -1,158 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - StudentHub Portal</title>
-</head>
-<body bgcolor="#F8FAFC" text="#0F172A" style="margin: 0; padding: 0;">
 
-    
-    <header>
-        <table width="100%" bgcolor="#0B2545" cellpadding="15" style="border-collapse: collapse;">
-            <tr>
-            
-                <td width="20%" align="left">
-                    <img src="logo.jpeg" alt="StudentHub Logo" width="100" height="70">
-                </td>
-            
-                
-                <td width="60%" align="center">
-                    <font color="#FFFFFF">
-                        <h1>WELCOME TO STUDENTHUB PORTAL</h1>
-                        <p>
-                            <i>
-                                <font color="#8DA9C4">Learn • Connect • Grow</font>
-                            </i>
-                        </p>
-                    </font>
-                </td>
-                
-                
-                <td width="20%" align="right">
-                    <img src="logo.jpeg" alt="StudentHub Logo" width="100" height="70">
-                </td>
-            </tr>
-        </table>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>About Us - StudentHub Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Color Theme Variables */
+        :root {
+            --bg-color: #F8FAFC;
+            --text-color: #0F172A;
+            --card-bg: #FFFFFF;
+            --card-light: #F1F5F9;
+            --header-bg: #0B2545;
+            --navbar-bg: #134074;
+            --border-color: #CBD5E1;
+            --text-sub: #475569;
+        }
+
+        body.dark-mode {
+            --bg-color: #0F172A;
+            --text-color: #F8FAFC;
+            --card-bg: #1E293B;
+            --card-light: #334155;
+            --header-bg: #020617;
+            --navbar-bg: #0F172A;
+            --border-color: #334155;
+            --text-sub: #94A3B8;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* ---------- Notification Banner ---------- */
+        .notification-banner {
+            background: #00A8E8;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .notification-banner .close-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* ---------- Header & Theme Button ---------- */
+        .header {
+            background: var(--header-bg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .logo {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .title p {
+            color: #8DA9C4;
+            margin-top: 8px;
+        }
+
+        .theme-btn {
+            background: #00A8E8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- Navbar & Mobile Menu ---------- */
+        .nav-container {
+            background: var(--navbar-bg);
+            position: relative;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+
+        .navbar {
+            background: var(--navbar-bg);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 14px 0px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            white-space: nowrap;
+            padding: 0 10px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #8DA9C4;
+        }
+
+        /* ---------- Sections & Cards ---------- */
+        .hero {
+            background: var(--card-bg);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .hero h1 {
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .hero p {
+            color: var(--text-sub);
+            margin-top: 12px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 17px;
+        }
+
+        .two-column, .three-column {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            padding: 35px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .box {
+            padding: 28px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .light {
+            background: var(--card-light);
+        }
+
+        .white {
+            background: var(--card-bg);
+        }
+
+        .box p {
+            color: var(--text-sub);
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        /* ---------- Interactive Trigger Button ---------- */
+        .cta-box {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--card-bg);
+            border-top: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .btn-custom {
+            background: #00A8E8;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-custom:hover {
+            background: #0086ba;
+        }
+
+        /* ---------- Modal Popup ---------- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        .tag {
+            color: #8DA9C4;
+        }
+
+        /* ---------- Responsive Breakpoints ---------- */
+        @media(max-width: 767px) {
+            .hamburger {
+                display: block;
+            }
+
+            .navbar {
+                display: none;
+                flex-direction: column;
+                padding: 10px 0;
+                gap: 12px;
+            }
+
+            .navbar.show {
+                display: flex;
+            }
+        }
+
+        @media(min-width: 768px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .two-column {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .three-column {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. Dynamic Notification Banner -->
+    <div class="notification-banner" id="banner">
+        <span>📢 Portal News: Registration for the Annual Tech Fest 2026 is now live!</span>
+        <button class="close-btn">&times;</button>
+    </div>
+
+    <!-- Header with Theme Switcher -->
+    <header class="header">
+        <img src="logo.jpeg" class="logo" alt="logo">
+
+        <div class="title">
+            <h1>WELCOME TO STUDENTHUB PORTAL</h1>
+            <p><i>Learn • Connect • Grow</i></p>
+        </div>
+
+        <button class="theme-btn" id="themeToggle">🌙 Dark Mode</button>
     </header>
 
-    
-    <nav>
-        <table width="100%" bgcolor="#134074" cellpadding="14" style="border-collapse: collapse;">
-            <tr align="center">
-                <td><a href="Home.html" target="_blank"><font color="#FFFFFF"><b>Home</b></font></a></td>
-                <td><a href="About.html" target="_blank"><font color="#FFFFFF"><b>About</b></font></a></td>
-                <td><a href="Contact.html" target="_blank"><font color="#FFFFFF"><b>Contact</b></font></a></td>
-                <td><a href="Dashboard.html" target="_blank"><font color="#FFFFFF"><b>Dashboard</b></font></a></td>
-                <td><a href="Event.html" target="_blank"><font color="#FFFFFF"><b>Event</b></font></a></td>
-                <td><a href="FAQ.html" target="_blank"><font color="#FFFFFF"><b>FAQ</b></font></a></td>
-                <td><a href="Feedback.html" target="_blank"><font color="#FFFFFF"><b>Feedback</b></font></a></td>
-                <td><a href="Login.html" target="_blank"><font color="#FFFFFF"><b>Login</b></font></a></td>
-                <td><a href="Profile.html" target="_blank"><font color="#FFFFFF"><b>Profile</b></font></a></td>
-                <td><a href="Register.html" target="_blank"><font color="#FFFFFF"><b>Register</b></font></a></td>
-            </tr>
-        </table>
-    </nav>
+    <!-- Navbar with Mobile Hamburger Button -->
+    <div class="nav-container">
+        <button class="hamburger">☰ Menu</button>
+        <nav class="navbar" id="navLinks">
+            <a href="Home.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="Contact.html">Contact</a>
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="Event.html">Event</a>
+            <a href="FAQ.html">FAQ</a>
+            <a href="Feedback.html">Feedback</a>
+            <a href="Login.html">Login</a>
+            <a href="Profile.html">Profile</a>
+            <a href="Register.html">Register</a>
+        </nav>
+    </div>
 
     <main>
-        
-        <section align="center">
-            <table width="100%" bgcolor="#FFFFFF" cellpadding="35" style="border-bottom: 2px solid #CBD5E1; border-collapse: collapse;">
-                <tr>
-                    <td align="center">
-                        <font color="#0B2545">
-                            <h1>About StudentHub</h1>
-                            <p style="font-size: 16px;">
-                                <font color="#475569">
-                                    Transforming the digital campus experience by bridging the gap between academics, student life, and career growth.
-                                </font>
-                            </p>
-                        </font>
-                    </td>
-                </tr>
-            </table>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>About StudentHub</h1>
+            <p>
+                Transforming the digital campus experience by bridging the gap between academics,
+                student life, and career growth.
+            </p>
         </section>
 
-        
-        <section>
-            <table width="100%" cellpadding="30" style="border-collapse: collapse; border-bottom: 2px solid #CBD5E1;">
-                <tr align="center">
-                    
-                    <td width="50%" bgcolor="#F1F5F9" style="border-right: 2px solid #CBD5E1;">
-                        <h2><font color="#0284C7">🚀 Our Mission</font></h2>
-                        <p><font color="#334155">To empower students with unified digital tools, interactive learning hubs, and peer networks that drive academic success and personal excellence.</font></p>
-                    </td>
-                    
-                    <td width="50%" bgcolor="#F1F5F9">
-                        <h2><font color="#0284C7">🌟 Our Vision</font></h2>
-                        <p><font color="#334155">To create an interconnected, tech-empowered global student community where knowledge sharing and innovation know no boundaries.</font></p>
-                    </td>
-                </tr>
-            </table>
+        <!-- Mission & Vision -->
+        <section class="two-column">
+            <div class="box light">
+                <h2 style="color:#0284C7;">🚀 Our Mission</h2>
+                <p>
+                    To empower students with unified digital tools, interactive learning hubs,
+                    and peer networks that drive academic success and personal excellence.
+                </p>
+            </div>
+
+            <div class="box light">
+                <h2 style="color:#0284C7;">🌟 Our Vision</h2>
+                <p>
+                    To create an interconnected, tech-empowered global student community
+                    where knowledge sharing and innovation know no boundaries.
+                </p>
+            </div>
         </section>
 
-    
-        <section>
-            <table width="100%" cellpadding="30" style="border-collapse: collapse; border-bottom: 2px solid #CBD5E1;">
-                <tr align="center">
-                    
-                    <td width="33.33%" bgcolor="#FFFFFF" style="border-right: 2px solid #CBD5E1;">
-                        <h3><font color="#0B2545">🌐 Vibrant Community</font></h3>
-                        <p><font color="#475569">Collaborate across departments, join interest groups, participate in forums, and build lifelong academic networks.</font></p>
-                    </td>
-                    
-                    <td width="33.33%" bgcolor="#FFFFFF" style="border-right: 2px solid #CBD5E1;">
-                        <h3><font color="#0B2545">📚 Smart Academic Toolkit</font></h3>
-                        <p><font color="#475569">Instant access to course repositories, exam schedules, lecture notes, and interactive assignment trackers.</font></p>
-                    </td>
-                    
-                    <td width="33.33%" bgcolor="#FFFFFF">
-                        <h3><font color="#0B2545">📢 Live Campus Buzz</font></h3>
-                        <p><font color="#475569">Real-time alerts for workshops, hackathons, club activities, and official university announcements.</font></p>
-                    </td>
-                </tr>
-            </table>
+        <!-- Interactive Popup Trigger Section -->
+        <section class="cta-box">
+            <h3 style="margin-bottom: 15px;">Want to learn more about our student impact?</h3>
+            <button class="btn-custom btn-open-modal">View Milestone Report 📊</button>
         </section>
 
-        
-        <section>
-            <table width="100%" cellpadding="30" style="border-collapse: collapse; border-bottom: 3px solid #0284C7;">
-                <tr align="center">
-                    
-                    <td width="33.33%" bgcolor="#F1F5F9" style="border-right: 2px solid #CBD5E1;">
-                        <h3><font color="#0369A1">🎓 25,000+ Active Members</font></h3>
-                        <p><font color="#334155">A thriving community of passionate learners and student innovators.</font></p>
-                    </td>
-                    
-                    <td width="33.33%" bgcolor="#F1F5F9" style="border-right: 2px solid #CBD5E1;">
-                        <h3><font color="#0369A1">🏆 150+ Events Hosted</font></h3>
-                        <p><font color="#334155">Successfully managing technical fests, cultural events, and career drives.</font></p>
-                    </td>
-                    
-                    <td width="33.33%" bgcolor="#F1F5F9">
-                        <h3><font color="#0369A1">⚡ 24/7 Academic Support</font></h3>
-                        <p><font color="#334155">Dedicated mentorship, faculty connections, and peer study circles.</font></p>
-                    </td>
-                </tr>
-            </table>
+        <!-- Features -->
+        <section class="three-column">
+            <div class="box white">
+                <h3 style="color:#0B2545;">🌐 Vibrant Community</h3>
+                <p>
+                    Collaborate across departments, join interest groups,
+                    participate in forums and build lifelong academic networks.
+                </p>
+            </div>
+
+            <div class="box white">
+                <h3 style="color:#0B2545;">📚 Smart Academic Toolkit</h3>
+                <p>
+                    Instant access to course repositories, exam schedules,
+                    lecture notes and assignment trackers.
+                </p>
+            </div>
+
+            <div class="box white">
+                <h3 style="color:#0B2545;">📢 Live Campus Buzz</h3>
+                <p>
+                    Real-time alerts for workshops, hackathons,
+                    club activities and university announcements.
+                </p>
+            </div>
         </section>
+
+        <!-- Statistics Grid -->
+        <section class="three-column">
+            <div class="box light">
+                <h3 style="color:#0369A1;">🎓 25,000+ Active Members</h3>
+                <p>A thriving community of passionate learners and innovators.</p>
+            </div>
+
+            <div class="box light">
+                <h3 style="color:#0369A1;">🏆 150+ Events Hosted</h3>
+                <p>Successfully managing technical fests, cultural events and career drives.</p>
+            </div>
+
+            <div class="box light">
+                <h3 style="color:#0369A1;">⚡ 24/7 Academic Support</h3>
+                <p>Dedicated mentorship, faculty connections and peer study circles.</p>
+            </div>
+        </section>
+
+        <!-- Dynamic Modal Popup -->
+        <div class="modal-overlay" id="customModal">
+            <div class="modal-box">
+                <button class="modal-close">&times;</button>
+                <h3 style="color:#0B2545; margin-bottom: 12px;">📊 StudentHub 2026 Impact Report</h3>
+                <p style="text-align: left; margin-bottom: 8px;">• Over <b>25,000+</b> active students onboarded.</p>
+                <p style="text-align: left; margin-bottom: 8px;">• <b>150+</b> successful events organized across departments.</p>
+                <p style="text-align: left; margin-bottom: 15px;">• <b>98%</b> positive feedback on academic resources accessibility.</p>
+                <button class="btn-custom btn-close-modal">Close Report</button>
+            </div>
+        </div>
     </main>
 
-    
     <footer>
-        <table width="100%" bgcolor="#0B2545" cellpadding="20" style="border-collapse: collapse;">
-            <tr>
-                <td align="center">
-                    <font color="#FFFFFF">
-                        <h3>STUDENTHUB PORTAL</h3>
-                        <p><font color="#8DA9C4">Learn • Connect • Grow</font></p>
-                        <p>© 2026 StudentHub Portal | All Rights Reserved</p>
-                        <p><b>Designed & Developed by Panvi Patel</b></p>
-                    </font>
-                </td>
-            </tr>
-        </table>
+        <h3>STUDENTHUB PORTAL</h3>
+
+        <p class="tag">Learn • Connect • Grow</p>
+
+        <p>© 2026 StudentHub Portal | All Rights Reserved</p>
+
+        <p><b>Designed & Developed by Panvi Patel</b></p>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
 
 </body>
 </html>

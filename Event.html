@@ -1,186 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Details - StudentHub Portal</title>
-</head>
-<body bgcolor="#F8FAFC" text="#0F172A" style="margin: 0; padding: 0;">
 
-   
-    <header>
-        <table width="100%" bgcolor="#0B2545" cellpadding="15" style="border-collapse: collapse;">
-            <tr>
-                
-                <td width="20%" align="left">
-                    <img src="logo.jpeg" alt="StudentHub Logo" width="100" height="70">
-                </td>
-            
-           
-                <td width="60%" align="center">
-                    <font color="#FFFFFF">
-                        <h1>WELCOME TO STUDENTHUB PORTAL</h1>
-                        <p>
-                            <i>
-                                <font color="#8DA9C4">Learn • Connect • Grow</font>
-                            </i>
-                        </p>
-                    </font>
-                </td>
-                
-               
-                <td width="20%" align="right">
-                    <img src="logo.jpeg" alt="StudentHub Logo" width="100" height="70">
-                </td>
-            </tr>
-        </table>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Event Details - StudentHub Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Color Theme Variables */
+        :root {
+            --bg-color: #F8FAFC;
+            --text-color: #0F172A;
+            --card-bg: #FFFFFF;
+            --card-light: #F1F5F9;
+            --header-bg: #0B2545;
+            --navbar-bg: #134074;
+            --border-color: #CBD5E1;
+            --text-sub: #475569;
+        }
+
+        body.dark-mode {
+            --bg-color: #0F172A;
+            --text-color: #F8FAFC;
+            --card-bg: #1E293B;
+            --card-light: #334155;
+            --header-bg: #020617;
+            --navbar-bg: #0F172A;
+            --border-color: #334155;
+            --text-sub: #94A3B8;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* ---------- Notification Banner ---------- */
+        .notification-banner {
+            background: #00A8E8;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .notification-banner .close-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* ---------- Header & Theme Button ---------- */
+        .header {
+            background: var(--header-bg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .logo {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .title p {
+            color: #8DA9C4;
+            margin-top: 8px;
+        }
+
+        .theme-btn {
+            background: #00A8E8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- Navbar & Mobile Menu ---------- */
+        .nav-container {
+            background: var(--navbar-bg);
+            position: relative;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+
+        .navbar {
+            background: var(--navbar-bg);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 14px 0px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            white-space: nowrap;
+            padding: 0 10px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #8DA9C4;
+        }
+
+        /* ---------- Event Details Section ---------- */
+        .hero-banner {
+            background: var(--card-bg);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .hero-banner h1 {
+            font-size: 30px;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .event-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            padding: 35px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card-box {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+            margin-bottom: 25px;
+        }
+
+        .card-box:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-header-title {
+            background: var(--card-light);
+            margin: -25px -25px 20px -25px;
+            padding: 15px 25px;
+            border-bottom: 2px solid var(--border-color);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-header-title h2 {
+            font-size: 20px;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .agenda-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .agenda-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-sub);
+        }
+
+        .agenda-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .quick-details p {
+            margin-bottom: 12px;
+            color: var(--text-sub);
+            font-size: 15px;
+        }
+
+        .quick-details b {
+            color: var(--text-color);
+        }
+
+        .btn-custom {
+            background: #0284C7;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0px 3px 8px rgba(2, 132, 199, 0.3);
+            width: 100%;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-custom:hover {
+            background: #0086ba;
+            color: white;
+        }
+
+        /* ---------- Modal Popup ---------- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        .tag {
+            color: #8DA9C4;
+        }
+
+        /* ---------- Responsive Breakpoints ---------- */
+        @media(max-width: 767px) {
+            .hamburger {
+                display: block;
+            }
+
+            .navbar {
+                display: none;
+                flex-direction: column;
+                padding: 10px 0;
+                gap: 12px;
+            }
+
+            .navbar.show {
+                display: flex;
+            }
+        }
+
+        @media(min-width: 768px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .event-grid {
+                grid-template-columns: 3fr 2fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Notification Banner -->
+    <div class="notification-banner" id="banner">
+        <span>📢 Special Event: Keynote speakers confirmed for AI & Robotics track!</span>
+        <button class="close-btn">&times;</button>
+    </div>
+
+    <!-- Header with Theme Switcher -->
+    <header class="header">
+        <img src="logo.jpeg" class="logo" alt="logo">
+
+        <div class="title">
+            <h1>WELCOME TO STUDENTHUB PORTAL</h1>
+            <p><i>Learn • Connect • Grow</i></p>
+        </div>
+
+        <button class="theme-btn" id="themeToggle">🌙 Dark Mode</button>
     </header>
 
-    <nav>
-        <table width="100%" bgcolor="#134074" cellpadding="14" style="border-collapse: collapse;">
-            <tr align="center">
-                <td><a href="Home.html" target="_blank"><font color="#FFFFFF"><b>Home</b></font></a></td>
-                <td><a href="About.html" target="_blank"><font color="#FFFFFF"><b>About</b></font></a></td>
-                <td><a href="Contact.html" target="_blank"><font color="#FFFFFF"><b>Contact</b></font></a></td>
-                <td><a href="Dashboard.html" target="_blank"><font color="#FFFFFF"><b>Dashboard</b></font></a></td>
-                <td><a href="Event.html" target="_blank"><font color="#FFFFFF"><b>Event</b></font></a></td>
-                <td><a href="FAQ.html" target="_blank"><font color="#FFFFFF"><b>FAQ</b></font></a></td>
-                <td><a href="Feedback.html" target="_blank"><font color="#FFFFFF"><b>Feedback</b></font></a></td>
-                <td><a href="Login.html" target="_blank"><font color="#FFFFFF"><b>Login</b></font></a></td>
-                <td><a href="Profile.html" target="_blank"><font color="#FFFFFF"><b>Profile</b></font></a></td>
-                <td><a href="Register.html" target="_blank"><font color="#FFFFFF"><b>Register</b></font></a></td>
-            </tr>
-        </table>
-    </nav>
+    <!-- Navbar with Mobile Hamburger Button -->
+    <div class="nav-container">
+        <button class="hamburger">☰ Menu</button>
+        <nav class="navbar" id="navLinks">
+            <a href="Home.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="Contact.html">Contact</a>
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="Event.html">Event</a>
+            <a href="FAQ.html">FAQ</a>
+            <a href="Feedback.html">Feedback</a>
+            <a href="Login.html">Login</a>
+            <a href="Profile.html">Profile</a>
+            <a href="Register.html">Register</a>
+        </nav>
+    </div>
 
     <main>
-       
-        <section align="center">
-            <table width="100%" bgcolor="#FFFFFF" cellpadding="30" style="border-bottom: 2px solid #CBD5E1; border-collapse: collapse;">
-                <tr>
-                    <td align="center">
-                        <font color="#0B2545">
-                            <h1 style="font-size: 32px; margin: 0;">🎉 Annual Tech & Innovation Symposium 2026</h1>
-                            <p style="margin-top: 10px;"><font color="#475569">Explore the future of Artificial Intelligence, Software Engineering & Robotics.</font></p>
-                        </font>
-                    </td>
-                </tr>
-            </table>
+        <!-- Event Header -->
+        <section class="hero-banner">
+            <h1>🎉 Annual Tech & Innovation Symposium 2026</h1>
+            <p style="margin-top: 10px; color: var(--text-sub);">Explore the future of Artificial Intelligence, Software Engineering & Robotics.</p>
         </section>
 
-        
-        <section style="padding: 30px 20px;">
-            <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-                <tr valign="top">
-               
-                    <td width="60%" style="padding-right: 20px;">
-                        
-                     
-                        <table width="100%" cellpadding="20" bgcolor="#FFFFFF" style="border: 2px solid #CBD5E1; border-radius: 8px; border-collapse: collapse; box-shadow: 0px 2px 5px rgba(0,0,0,0.05); margin-bottom: 25px;">
-                            <tr bgcolor="#F1F5F9" style="border-bottom: 2px solid #CBD5E1;">
-                                <td>
-                                    <h2><font color="#0B2545">📌 About the Event</font></h2>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p style="line-height: 1.6;"><font color="#334155">
-                                        Join us for the premier flagship technical event of StudentHub Portal! The Tech & Innovation Symposium brings together industry experts, researchers, and aspiring student developers for a full day of insightful keynote sessions, interactive project demonstrations, and hands-on technical workshops.
-                                    </font></p>
-                                    <p style="line-height: 1.6;"><font color="#334155">
-                                        Whether you are looking to showcase your academic projects, network with campus leaders, or learn cutting-edge technology trends, this event is designed for you!
-                                    </font></p>
-                                </td>
-                            </tr>
-                        </table>
+        <!-- Main Content Grid -->
+        <section class="event-grid">
+            
+            <!-- Left Side: Details & Agenda -->
+            <div>
+                <div class="card-box">
+                    <div class="card-header-title">
+                        <h2>📌 About the Event</h2>
+                    </div>
+                    <p style="line-height: 1.6; color: var(--text-sub); margin-bottom: 15px;">
+                        Join us for the premier flagship technical event of StudentHub Portal! The Tech & Innovation Symposium brings together industry experts, researchers, and aspiring student developers for a full day of insightful keynote sessions, interactive project demonstrations, and hands-on technical workshops.
+                    </p>
+                    <p style="line-height: 1.6; color: var(--text-sub);">
+                        Whether you are looking to showcase your academic projects, network with campus leaders, or learn cutting-edge technology trends, this event is designed for you!
+                    </p>
+                </div>
 
-                        <table width="100%" cellpadding="20" bgcolor="#FFFFFF" style="border: 2px solid #CBD5E1; border-radius: 8px; border-collapse: collapse; box-shadow: 0px 2px 5px rgba(0,0,0,0.05);">
-                            <tr bgcolor="#F1F5F9" style="border-bottom: 2px solid #CBD5E1;">
-                                <td colspan="2">
-                                    <h2><font color="#0B2545">🗓️ Event Agenda</font></h2>
-                                </td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #E2E8F0;">
-                                <td width="30%"><b><font color="#0284C7">09:30 AM - 10:30 AM</font></b></td>
-                                <td><font color="#334155">Opening Ceremony & Keynote Address</font></td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #E2E8F0;">
-                                <td width="30%"><b><font color="#0284C7">10:45 AM - 01:00 PM</font></b></td>
-                                <td><font color="#334155">Student Project Exhibition & Poster Presentations</font></td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #E2E8F0;">
-                                <td width="30%"><b><font color="#0284C7">01:00 PM - 02:00 PM</font></b></td>
-                                <td><font color="#334155">Networking Lunch & Interactive Stalls</font></td>
-                            </tr>
-                            <tr>
-                                <td width="30%"><b><font color="#0284C7">02:15 PM - 04:30 PM</font></b></td>
-                                <td><font color="#334155">Hands-on Coding Workshop & Prize Distribution</font></td>
-                            </tr>
-                        </table>
+                <div class="card-box">
+                    <div class="card-header-title">
+                        <h2>🗓️ Event Agenda</h2>
+                    </div>
+                    <table class="agenda-table">
+                        <tr>
+                            <td width="35%"><b style="color: #0284C7;">09:30 AM - 10:30 AM</b></td>
+                            <td>Opening Ceremony & Keynote Address</td>
+                        </tr>
+                        <tr>
+                            <td><b style="color: #0284C7;">10:45 AM - 01:00 PM</b></td>
+                            <td>Student Project Exhibition & Poster Presentations</td>
+                        </tr>
+                        <tr>
+                            <td><b style="color: #0284C7;">01:00 PM - 02:00 PM</b></td>
+                            <td>Networking Lunch & Interactive Stalls</td>
+                        </tr>
+                        <tr>
+                            <td><b style="color: #0284C7;">02:15 PM - 04:30 PM</b></td>
+                            <td>Hands-on Coding Workshop & Prize Distribution</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-                    </td>
+            <!-- Right Side: Quick Info & Action -->
+            <div>
+                <div class="card-box quick-details">
+                    <div class="card-header-title">
+                        <h2>⚡ Quick Details</h2>
+                    </div>
+                    <p><b>📅 Date:</b> August 12, 2026</p>
+                    <p><b>⏰ Time:</b> 09:30 AM – 04:30 PM</p>
+                    <p><b>📍 Venue:</b> University Main Auditorium</p>
+                    <p><b>🎓 Mode:</b> In-Person / Hybrid</p>
+                    <p><b>🎟️ Eligibility:</b> Open for all Departments</p>
 
-                   
-                    <td width="40%">
-                        <table width="100%" cellpadding="25" bgcolor="#FFFFFF" style="border: 2px solid #CBD5E1; border-radius: 8px; border-collapse: collapse; box-shadow: 0px 2px 5px rgba(0,0,0,0.05);">
-                            
-                            <tr bgcolor="#F1F5F9" style="border-bottom: 2px solid #CBD5E1;">
-                                <td>
-                                    <h2 style="margin: 0;"><font color="#0B2545">⚡ Quick Details</font></h2>
-                                </td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #E2E8F0;">
-                                <td>
-                                    <p><b><font color="#0B2545">📅 Date:</font></b> <font color="#475569">August 12, 2026</font></p>
-                                    <p><b><font color="#0B2545">⏰ Time:</font></b> <font color="#475569">09:30 AM – 04:30 PM</font></p>
-                                    <p><b><font color="#0B2545">📍 Venue:</font></b> <font color="#475569">University Main Auditorium</font></p>
-                                    <p><b><font color="#0B2545">🎓 Mode:</font></b> <font color="#475569">In-Person / Hybrid</font></p>
-                                    <p><b><font color="#0B2545">🎟️ Eligibility:</font></b> <font color="#475569">Open for all Departments</font></p>
-                                </td>
-                            </tr>
+                    <div style="margin-top: 25px;">
+                        <a href="Event_register.html" class="btn-custom">Register Now →</a>
+                        <button class="btn-custom btn-open-modal" style="background: transparent; color: #0284C7; border: 2px solid #0284C7; box-shadow: none; margin-top: 10px;">Event Highlights 💡</button>
+                    </div>
+                </div>
+            </div>
 
-                            <tr>
-                                <td align="center" style="padding-top: 30px;">
-                                    <a href="Event_register.html" style="text-decoration: none;">
-                                        <button type="button" 
-                                                style="background-color: #0284C7; 
-                                                       color: white; 
-                                                       border: none; 
-                                                       padding: 15px 40px; 
-                                                       font-size: 18px; 
-                                                       font-weight: bold; 
-                                                       border-radius: 8px; 
-                                                       cursor: pointer;
-                                                       width: 100%;
-                                                       box-shadow: 0px 3px 8px rgba(2, 132, 199, 0.3);">
-                                            Register Now →
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </td>
-
-                </tr>
-            </table>
         </section>
+
+        <!-- Dynamic Modal Popup -->
+        <div class="modal-overlay" id="customModal">
+            <div class="modal-box">
+                <button class="modal-close">&times;</button>
+                <h3 style="color:#0284C7; margin-bottom: 12px;">💡 Event Highlights</h3>
+                <p style="text-align: left; margin-bottom: 8px;">• <b>Certificate:</b> Official participation certificate provided to all attendees.</p>
+                <p style="text-align: left; margin-bottom: 8px;">• <b>Networking:</b> Connect with top industry professionals & alumni.</p>
+                <p style="text-align: left; margin-bottom: 15px;">• <b>Prizes:</b> Cash rewards & trophies for winning project demonstrations.</p>
+                <button class="btn-custom btn-close-modal">Got It!</button>
+            </div>
+        </div>
     </main>
 
     <footer>
-        <table width="100%" bgcolor="#0B2545" cellpadding="20" style="border-collapse: collapse;">
-            <tr>
-                <td align="center">
-                    <font color="#FFFFFF">
-                        <h3>STUDENTHUB PORTAL</h3>
-                        <p><font color="#8DA9C4">Learn • Connect • Grow</font></p>
-                        <p>© 2026 StudentHub Portal | All Rights Reserved</p>
-                        <p><b>Designed & Developed by Panvi Patel</b></p>
-                    </font>
-                </td>
-            </tr>
-        </table>
+        <h3>STUDENTHUB PORTAL</h3>
+
+        <p class="tag">Learn • Connect • Grow</p>
+
+        <p>© 2026 StudentHub Portal | All Rights Reserved</p>
+
+        <p><b>Designed & Developed by Panvi Patel</b></p>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom External JavaScript -->
+    <script src="script.js"></script>
 
 </body>
 </html>
