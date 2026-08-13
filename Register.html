@@ -200,20 +200,30 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            position: relative;
         }
 
         .form-group label {
             font-weight: bold;
             color: var(--text-color);
-            font-size: 14px;
+            font-size: 15px;
         }
 
-        .form-group input,
+        /* Input Container for Circle Icon Placement */
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="password"],
         .form-group select {
             width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+            padding: 12px 40px 12px 14px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
             font-size: 14px;
             background: var(--card-bg);
             color: var(--text-color);
@@ -223,6 +233,118 @@
         .form-group select:focus {
             outline: none;
             border-color: #0284C7;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        /* Circle Icons inside Input Box */
+        .status-circle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            pointer-events: none;
+        }
+
+        .valid-circle {
+            background-color: #10b981; /* Green Circle */
+            display: flex;
+        }
+
+        .invalid-circle {
+            background-color: #ef4444; /* Red Circle */
+            display: flex;
+        }
+
+        .is-invalid-input {
+            border-color: #ef4444 !important;
+        }
+        .is-valid-input {
+            border-color: #10b981 !important;
+        }
+
+        /* Error Text Below Inputs */
+        .msg-text {
+            font-size: 12px;
+            font-weight: bold;
+            color: #ef4444;
+            margin-top: 2px;
+            display: none;
+        }
+
+        /* ---------- Modern Gender Radio Option Cards ---------- */
+        .gender-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .gender-card {
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            background: var(--card-light);
+            transition: all 0.2s ease;
+        }
+
+        .gender-card:hover {
+            border-color: #0284C7;
+            background: rgba(2, 132, 199, 0.05);
+        }
+
+        .gender-card input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #0284C7;
+            cursor: pointer;
+        }
+
+        /* ---------- Modern Terms Box Styling ---------- */
+        .terms-card {
+            background: var(--card-light);
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .terms-card:hover {
+            border-color: #0284C7;
+        }
+
+        .terms-card input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #0284C7;
+            cursor: pointer;
+        }
+
+        .terms-card label {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
         }
 
         .btn-submit {
@@ -325,6 +447,10 @@
             .navbar.show {
                 display: flex;
             }
+
+            .gender-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media(min-width: 768px) {
@@ -382,65 +508,133 @@
             <div class="form-card">
 
                 <div class="form-header">
-                    <h1>📝 Register</h1>
-                    <p style="margin-top: 5px; color: var(--text-sub);">Create your official StudentHub account</p>
+                    <h1>📝 Student Registration</h1>
+                    <p style="margin-top: 5px; color: var(--text-sub);">Fill in all details to create your account</p>
                 </div>
 
-                <form class="form-body">
+                <form class="form-body" id="regForm" novalidate>
 
+                    <!-- 1. First Name & Last Name -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="fname">👤 First Name:</label>
-                            <input type="text" id="fname" name="firstname" placeholder="Enter First Name" required>
+                            <div class="input-wrapper">
+                                <input type="text" id="fname" name="firstname" placeholder="Enter First Name">
+                                <span class="status-circle" id="fnameCircle"></span>
+                            </div>
+                            <small class="msg-text" id="fnameErr"></small>
                         </div>
                         <div class="form-group">
                             <label for="lname">👤 Last Name:</label>
-                            <input type="text" id="lname" name="lastname" placeholder="Enter Last Name" required>
+                            <div class="input-wrapper">
+                                <input type="text" id="lname" name="lastname" placeholder="Enter Last Name">
+                                <span class="status-circle" id="lnameCircle"></span>
+                            </div>
+                            <small class="msg-text" id="lnameErr"></small>
                         </div>
                     </div>
 
+                    <!-- 2. Email & Phone -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email">✉️ Email ID:</label>
-                            <input type="email" id="email" name="email" placeholder="student@example.com" required>
+                            <div class="input-wrapper">
+                                <input type="email" id="email" name="email" placeholder="student@example.com">
+                                <span class="status-circle" id="emailCircle"></span>
+                            </div>
+                            <small class="msg-text" id="emailErr"></small>
                         </div>
                         <div class="form-group">
-                            <label for="phone">📞 Phone No:</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number">
+                            <label for="phone">📞 Mobile Number:</label>
+                            <div class="input-wrapper">
+                                <input type="tel" id="phone" name="phone" placeholder="10-digit Indian Number">
+                                <span class="status-circle" id="phoneCircle"></span>
+                            </div>
+                            <small class="msg-text" id="phoneErr"></small>
                         </div>
                     </div>
 
+                    <!-- 3. Password & Confirm Password -->
                     <div class="form-row">
                         <div class="form-group">
                             <label for="pwd">🔒 Password:</label>
-                            <input type="password" id="pwd" name="password" placeholder="Create Password" required>
+                            <div class="input-wrapper">
+                                <input type="password" id="pwd" name="password" placeholder="Create Strong Password">
+                                <span class="status-circle" id="pwdCircle"></span>
+                            </div>
+                            <small class="msg-text" id="pwdErr"></small>
                         </div>
                         <div class="form-group">
                             <label for="cpwd">🔑 Confirm Password:</label>
-                            <input type="password" id="cpwd" name="confirmpassword" placeholder="Re-enter Password" required>
+                            <input-wrapper class="input-wrapper">
+                                <input type="password" id="cpwd" name="confirmpassword" placeholder="Re-enter Password">
+                                <span class="status-circle" id="cpwdCircle"></span>
+                            </input-wrapper>
+                            <small class="msg-text" id="cpwdErr"></small>
                         </div>
                     </div>
 
+                    <!-- 4. Course & Academic Year -->
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="sid">🆔 Student ID:</label>
-                            <input type="text" id="sid" name="studentid" placeholder="e.g. 25CS075" required>
+                            <label for="course">📚 Course:</label>
+                            <div class="input-wrapper">
+                                <select id="course" name="course">
+                                    <option value="">Select Course</option>
+                                    <option value="B.Tech">B.Tech</option>
+                                    <option value="B.E">B.E</option>
+                                    <option value="BCA">BCA</option>
+                                    <option value="MCA">MCA</option>
+                                </select>
+                                <span class="status-circle" id="courseCircle"></span>
+                            </div>
+                            <small class="msg-text" id="courseErr"></small>
                         </div>
                         <div class="form-group">
-                            <label for="dept">🏫 Department:</label>
-                            <select id="dept" name="department" required>
-                                <option value="">Select Department</option>
-                                <option value="CSE">Computer Science & Engineering</option>
-                                <option value="IT">Information Technology</option>
-                                <option value="EC">Electronics & Communication</option>
-                                <option value="ME">Mechanical Engineering</option>
-                                <option value="CE">Civil Engineering</option>
-                            </select>
+                            <label for="year">🎓 Academic Year:</label>
+                            <div class="input-wrapper">
+                                <select id="year" name="year">
+                                    <option value="">Select Year</option>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                </select>
+                                <span class="status-circle" id="yearCircle"></span>
+                            </div>
+                            <small class="msg-text" id="yearErr"></small>
                         </div>
                     </div>
 
+                    <!-- 5. Gender Selection (Interactive Large Box Cards) -->
+                    <div class="form-group">
+                        <label>⚧️ Gender:</label>
+                        <div class="gender-container">
+                            <label class="gender-card">
+                                <input type="radio" name="gender" value="Male"> 👨 Male
+                            </label>
+                            <label class="gender-card">
+                                <input type="radio" name="gender" value="Female"> 👩 Female
+                            </label>
+                            <label class="gender-card">
+                                <input type="radio" name="gender" value="Other"> 🧑 Other
+                            </label>
+                        </div>
+                        <small class="msg-text" id="genderErr"></small>
+                    </div>
+
+                    <!-- 6. Terms & Conditions Box -->
+                    <div class="form-group">
+                        <div class="terms-card">
+                            <input type="checkbox" id="terms" name="terms">
+                            <label for="terms">I accept all the Terms & Conditions of StudentHub</label>
+                        </div>
+                        <small class="msg-text" id="termsErr"></small>
+                    </div>
+
+                    <!-- Submit Button -->
                     <div style="margin-top: 10px;">
-                        <button type="submit" class="btn-submit">Submit Registration →</button>
+                        <button type="submit" id="submitBtn" class="btn-submit">Submit Registration →</button>
                     </div>
 
                     <div class="login-link">

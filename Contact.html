@@ -99,7 +99,7 @@
             transform: scale(1.05);
         }
 
-        /* ---------- EXACT ORIGINAL NAVBAR (No Height/Length Changes) ---------- */
+        /* ---------- NAVBAR ---------- */
         .nav-container {
             background: var(--navbar-bg);
         }
@@ -122,7 +122,7 @@
             justify-content: space-around;
             align-items: center;
             width: 100%;
-            padding: 14px 0px; /* Exact height matching table code */
+            padding: 14px 0px;
             flex-wrap: nowrap;
             overflow-x: auto;
         }
@@ -138,6 +138,20 @@
 
         .navbar a:hover {
             color: #8DA9C4;
+        }
+
+        /* Dynamic Hero Section Style (Fix for Dark Mode Issue) */
+        .hero-contact-section {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        /* Dynamic Campus Location Card (Fix for Dark Mode Issue) */
+        .location-card-custom {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
         }
 
         /* ---------- CSS Grid Layout for Contact Cards ---------- */
@@ -271,13 +285,13 @@
 
 <body>
 
-    <!-- Notification Banner (Flexbox Layout) -->
+    <!-- Notification Banner -->
     <div class="notification-banner d-flex justify-content-between align-items-center" id="banner">
         <span>📞 Helpdesk Hours: Central Support Desks are open Mon - Sat (09:00 AM - 05:00 PM).</span>
         <button class="close-btn">&times;</button>
     </div>
 
-    <!-- Header (Bootstrap Flex & Alignment Classes) -->
+    <!-- Header -->
     <header class="header text-center text-md-start">
         <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
             <img src="logo.jpeg" class="logo" alt="logo">
@@ -309,14 +323,14 @@
     </div>
 
     <main>
-        <!-- Hero Section -->
-        <section class="bg-white py-4 text-center border-bottom">
+        <!-- Fixed Hero Section with CSS variable support -->
+        <section class="hero-contact-section py-4 text-center">
             <div class="container">
                 <h1 class="h2 fw-bold m-0">📞 University Contact</h1>
             </div>
         </section>
 
-        <!-- Sub Quick Links Bar (Flexbox) -->
+        <!-- Sub Quick Links Bar -->
         <section class="sub-nav-bar text-center">
             <div class="container d-flex flex-wrap justify-content-center gap-3 fw-bold">
                 <span>📍 Address</span> |
@@ -326,7 +340,7 @@
             </div>
         </section>
 
-        <!-- Contact Cards Section (CSS Grid Container) -->
+        <!-- Contact Cards Section -->
         <section class="py-4">
             <div class="container">
                 <div class="contact-grid-custom">
@@ -382,10 +396,10 @@
             </div>
         </section>
 
-        <!-- Campus Location Section (Bootstrap Card & Grid) -->
+        <!-- Fixed Campus Location Section -->
         <section class="pb-5">
             <div class="container">
-                <div class="card p-4 text-center border-2 shadow-sm rounded-3">
+                <div class="location-card-custom p-4 text-center shadow-sm rounded-3">
                     <h2 class="h3 fw-bold mb-3">🗺️ Campus Location</h2>
                     <p class="fs-5 fw-semibold mb-1">StudentHub University Campus</p>
                     <p class="text-secondary mb-2">CHARUSAT Campus, Off Nadiad-Petlad Highway, Changa, Gujarat 388421</p>
