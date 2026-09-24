@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Annual Tech & Innovation Symposium 2026",
+        "category": "AI",
+        "date": "2026-09-20",
+        "venue": "CHARUSAT Auditorium"
+    },
+    {
+        "id": 2,
+        "name": "Web Development Workshop",
+        "category": "Web Development",
+        "date": "2026-09-25",
+        "venue": "Computer Lab"
+    },
+    {
+        "id": 3,
+        "name": "Robotics Innovation Day",
+        "category": "Robotics",
+        "date": "2026-10-05",
+        "venue": "Innovation Lab"
+    },
+    {
+        "id": 4,
+        "name": "AI Career Guidance Session",
+        "category": "AI",
+        "date": "2026-10-10",
+        "venue": "Seminar Hall"
+    },
+    {
+        "id": 5,
+        "name": "Software Engineering Meetup",
+        "category": "Software",
+        "date": "2026-10-15",
+        "venue": "Room 101"
+    },
+    {
+        "id": 6,
+        "name": "Cyber Security Awareness",
+        "category": "Cyber Security",
+        "date": "2026-10-20",
+        "venue": "Seminar Hall"
+    }
+]

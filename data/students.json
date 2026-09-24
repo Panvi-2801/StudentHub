@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Panvi Patel",
+        "studentId": "25CS075",
+        "course": "Computer Science & Engineering",
+        "year": "2nd Year",
+        "email": "panvi@example.com"
+    },
+    {
+        "id": 2,
+        "name": "Aahan Patel",
+        "studentId": "25CS076",
+        "course": "Computer Science & Engineering",
+        "year": "2nd Year",
+        "email": "aahan@example.com"
+    },
+    {
+        "id": 3,
+        "name": "Ridan Patel",
+        "studentId": "25CS077",
+        "course": "Information Technology",
+        "year": "2nd Year",
+        "email": "ridan@example.com"
+    },
+    {
+        "id": 4,
+        "name": "Aadvik Patel",
+        "studentId": "25CS078",
+        "course": "Computer Engineering",
+        "year": "2nd Year",
+        "email": "aadvik@example.com"
+    },
+    {
+        "id": 5,
+        "name": "Ruhan Patel",
+        "studentId": "25CS079",
+        "course": "Computer Science & Engineering",
+        "year": "3rd Year",
+        "email": "ruhan@example.com"
+    },
+    {
+        "id": 6,
+        "name": "Aadir Patel",
+        "studentId": "25CS080",
+        "course": "Information Technology",
+        "year": "3rd Year",
+        "email": "aadir@example.com"
+    }
+]

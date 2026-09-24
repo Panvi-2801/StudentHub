@@ -332,6 +332,96 @@
                 grid-template-columns: 3fr 2fr;
             }
         }
+
+        /* ---------- Dynamic Event List - Added ---------- */
+        .dynamic-events-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px 35px;
+        }
+
+        .dynamic-events-box {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .dynamic-events-box h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .event-controls {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .event-controls input,
+        .event-controls select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .dynamic-event-card {
+            background: var(--card-light);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .dynamic-event-card h3 {
+            color: var(--text-color);
+            margin-bottom: 12px;
+            font-size: 19px;
+        }
+
+        .dynamic-event-card p {
+            color: var(--text-sub);
+            margin-bottom: 7px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pagination button {
+            padding: 8px 14px;
+            border: 1px solid #0284C7;
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            background: #0284C7;
+            color: white;
+        }
+
+        .no-events {
+            text-align: center;
+            color: var(--text-sub);
+            padding: 20px;
+        }
+
+        @media(max-width: 767px) {
+            .event-controls {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -381,7 +471,7 @@
 
         <!-- Main Content Grid -->
         <section class="event-grid">
-            
+
             <!-- Left Side: Details & Agenda -->
             <div>
                 <div class="card-box">
@@ -442,6 +532,44 @@
 
         </section>
 
+        <!-- Dynamic Event List - Added -->
+        <section class="dynamic-events-section">
+
+            <div class="dynamic-events-box">
+
+                <h2>📋 All Events</h2>
+
+                <div class="event-controls">
+
+                    <input type="text" id="searchInput" placeholder="🔍 Search events...">
+
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="AI">AI</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Robotics">Robotics</option>
+                        <option value="Software">Software</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                    </select>
+
+                    <select id="sortSelect">
+                        <option value="default">Sort By</option>
+                        <option value="nameAsc">Name A-Z</option>
+                        <option value="nameDesc">Name Z-A</option>
+                        <option value="dateAsc">Date: Old to New</option>
+                        <option value="dateDesc">Date: New to Old</option>
+                    </select>
+
+                </div>
+
+                <div id="eventContainer"></div>
+
+                <div class="pagination" id="pagination"></div>
+
+            </div>
+
+        </section>
+
         <!-- Dynamic Modal Popup -->
         <div class="modal-overlay" id="customModal">
             <div class="modal-box">
@@ -470,6 +598,182 @@
 
     <!-- Custom External JavaScript -->
     <script src="script.js"></script>
+
+    <!-- Fetch API + Dynamic Event List -->
+    <script>
+        let events = [];
+        let currentPage = 1;
+        let itemsPerPage = 3;
+
+        fetch("data/events.json")
+            .then(response => response.json())
+            .then(data => {
+                events = data;
+                displayEvents();
+            })
+            .catch(error => {
+                document.getElementById("eventContainer").innerHTML =
+                    '<p class="no-events">Unable to load events.</p>';
+                console.log("Error loading events:", error);
+            });
+
+
+        function displayEvents() {
+
+            let searchText = document.getElementById("searchInput").value.toLowerCase();
+            let category = document.getElementById("categoryFilter").value;
+
+            let filteredEvents = events.filter(event => {
+
+                let matchSearch =
+                    event.name.toLowerCase().includes(searchText) ||
+                    event.category.toLowerCase().includes(searchText);
+
+                let matchCategory =
+                    category === "all" ||
+                    event.category === category;
+
+                return matchSearch && matchCategory;
+            });
+
+
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = start + itemsPerPage;
+
+            let pageEvents = filteredEvents.slice(start, end);
+
+            let container = document.getElementById("eventContainer");
+
+            container.innerHTML = "";
+
+
+            if (pageEvents.length === 0) {
+
+                container.innerHTML =
+                    '<p class="no-events">No events found.</p>';
+
+            } else {
+
+                pageEvents.forEach(event => {
+
+                    container.innerHTML += `
+                        <div class="dynamic-event-card">
+
+                            <h3>${event.name}</h3>
+
+                            <p><b>📚 Category:</b> ${event.category}</p>
+
+                            <p><b>📅 Date:</b> ${event.date}</p>
+
+                            <p><b>📍 Venue:</b> ${event.venue}</p>
+
+                        </div>
+                    `;
+
+                });
+            }
+
+            displayPagination(filteredEvents.length);
+        }
+
+
+        document.getElementById("searchInput").addEventListener("input", function () {
+
+            currentPage = 1;
+            displayEvents();
+
+        });
+
+
+        document.getElementById("categoryFilter").addEventListener("change", function () {
+
+            currentPage = 1;
+            displayEvents();
+
+        });
+
+
+        document.getElementById("sortSelect").addEventListener("change", function () {
+
+            let value = this.value;
+
+            if (value === "nameAsc") {
+
+                events.sort((a, b) =>
+                    a.name.localeCompare(b.name)
+                );
+
+            }
+
+            if (value === "nameDesc") {
+
+                events.sort((a, b) =>
+                    b.name.localeCompare(a.name)
+                );
+
+            }
+
+            if (value === "dateAsc") {
+
+                events.sort((a, b) =>
+                    new Date(a.date) - new Date(b.date)
+                );
+
+            }
+
+            if (value === "dateDesc") {
+
+                events.sort((a, b) =>
+                    new Date(b.date) - new Date(a.date)
+                );
+
+            }
+
+            currentPage = 1;
+            displayEvents();
+
+        });
+
+
+        function displayPagination(totalItems) {
+
+            let totalPages =
+                Math.ceil(totalItems / itemsPerPage);
+
+            let pagination =
+                document.getElementById("pagination");
+
+            pagination.innerHTML = "";
+
+
+            if (totalPages <= 1) {
+                return;
+            }
+
+
+            for (let i = 1; i <= totalPages; i++) {
+
+                let button =
+                    document.createElement("button");
+
+                button.innerText = i;
+
+                if (i === currentPage) {
+                    button.classList.add("active");
+                }
+
+                button.onclick = function () {
+
+                    currentPage = i;
+                    displayEvents();
+
+                };
+
+                pagination.appendChild(button);
+            }
+
+        }
+    </script>
 
 </body>
 </html>

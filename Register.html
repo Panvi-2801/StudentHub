@@ -11,6 +11,7 @@
     <title>Register - StudentHub Portal</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -19,6 +20,7 @@
         }
 
         /* Color Theme Variables */
+
         :root {
             --bg-color: #F8FAFC;
             --text-color: #0F172A;
@@ -47,7 +49,9 @@
             color: var(--text-color);
         }
 
+
         /* ---------- Notification Banner ---------- */
+
         .notification-banner {
             background: #00A8E8;
             color: #fff;
@@ -67,7 +71,9 @@
             cursor: pointer;
         }
 
+
         /* ---------- Header & Theme Button ---------- */
+
         .header {
             background: var(--header-bg);
             color: white;
@@ -111,7 +117,9 @@
             transform: scale(1.05);
         }
 
+
         /* ---------- Navbar & Mobile Menu ---------- */
+
         .nav-container {
             background: var(--navbar-bg);
             position: relative;
@@ -153,7 +161,9 @@
             color: #8DA9C4;
         }
 
+
         /* ---------- Form Section Styling ---------- */
+
         .form-section {
             padding: 40px 20px;
             display: flex;
@@ -209,7 +219,9 @@
             font-size: 15px;
         }
 
-        /* Input Container for Circle Icon Placement */
+
+        /* ---------- Input Wrapper ---------- */
+
         .input-wrapper {
             position: relative;
             width: 100%;
@@ -236,7 +248,18 @@
             box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
         }
 
-        /* Circle Icons inside Input Box */
+
+        /* ---------- Student ID ---------- */
+
+        #studentId {
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+
+        /* ---------- Circle Icons ---------- */
+
         .status-circle {
             position: absolute;
             right: 12px;
@@ -255,23 +278,26 @@
         }
 
         .valid-circle {
-            background-color: #10b981; /* Green Circle */
+            background-color: #10b981;
             display: flex;
         }
 
         .invalid-circle {
-            background-color: #ef4444; /* Red Circle */
+            background-color: #ef4444;
             display: flex;
         }
 
         .is-invalid-input {
             border-color: #ef4444 !important;
         }
+
         .is-valid-input {
             border-color: #10b981 !important;
         }
 
-        /* Error Text Below Inputs */
+
+        /* ---------- Error Text ---------- */
+
         .msg-text {
             font-size: 12px;
             font-weight: bold;
@@ -280,12 +306,15 @@
             display: none;
         }
 
-        /* ---------- Modern Gender Radio Option Cards ---------- */
+
+        /* ---------- Gender ---------- */
+
         .gender-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             margin-top: 4px;
+            width: 100%;
         }
 
         .gender-card {
@@ -301,6 +330,7 @@
             font-size: 15px;
             background: var(--card-light);
             transition: all 0.2s ease;
+            width: 100%;
         }
 
         .gender-card:hover {
@@ -315,7 +345,9 @@
             cursor: pointer;
         }
 
-        /* ---------- Modern Terms Box Styling ---------- */
+
+        /* ---------- Terms Box ---------- */
+
         .terms-card {
             background: var(--card-light);
             border: 1.5px solid var(--border-color);
@@ -346,6 +378,9 @@
             font-weight: bold;
             margin: 0;
         }
+
+
+        /* ---------- Submit Button ---------- */
 
         .btn-submit {
             background-color: #0284C7;
@@ -378,7 +413,9 @@
             font-weight: bold;
         }
 
+
         /* ---------- Modal Popup ---------- */
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -415,7 +452,9 @@
             color: var(--text-color);
         }
 
+
         /* ---------- Footer ---------- */
+
         footer {
             background: var(--header-bg);
             color: white;
@@ -431,8 +470,11 @@
             color: #8DA9C4;
         }
 
-        /* ---------- Responsive Breakpoints ---------- */
+
+        /* ---------- Responsive ---------- */
+
         @media(max-width: 767px) {
+
             .hamburger {
                 display: block;
             }
@@ -448,12 +490,21 @@
                 display: flex;
             }
 
+            /* Gender remains 3 equal columns */
             .gender-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .gender-card {
+                padding: 10px 5px;
+                font-size: 13px;
             }
         }
 
+
         @media(min-width: 768px) {
+
             .header {
                 flex-direction: row;
                 justify-content: space-between;
@@ -463,217 +514,633 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
+
     <!-- Notification Banner -->
+
     <div class="notification-banner" id="banner">
-        <span>📝 New Student Registration: Fill in your official credentials to create an account!</span>
-        <button class="close-btn">&times;</button>
+
+        <span>
+            📝 New Student Registration: Fill in your official credentials to create an account!
+        </span>
+
+        <button class="close-btn">
+            &times;
+        </button>
+
     </div>
 
-    <!-- Header with Theme Switcher -->
+
+    <!-- Header -->
+
     <header class="header">
-        <img src="logo.jpeg" class="logo" alt="logo">
+
+        <img src="logo.jpeg"
+             class="logo"
+             alt="logo">
 
         <div class="title">
-            <h1>WELCOME TO STUDENTHUB PORTAL</h1>
-            <p><i>Learn • Connect • Grow</i></p>
+
+            <h1>
+                WELCOME TO STUDENTHUB PORTAL
+            </h1>
+
+            <p>
+                <i>Learn • Connect • Grow</i>
+            </p>
+
         </div>
 
-        <button class="theme-btn" id="themeToggle">🌙 Dark Mode</button>
+        <button class="theme-btn"
+                id="themeToggle">
+
+            🌙 Dark Mode
+
+        </button>
+
     </header>
 
-    <!-- Navbar with Mobile Hamburger Button -->
+
+    <!-- Navbar -->
+
     <div class="nav-container">
-        <button class="hamburger">☰ Menu</button>
-        <nav class="navbar" id="navLinks">
+
+        <button class="hamburger">
+            ☰ Menu
+        </button>
+
+        <nav class="navbar"
+             id="navLinks">
+
             <a href="Home.html">Home</a>
+
             <a href="About.html">About</a>
+
             <a href="Contact.html">Contact</a>
+
             <a href="Dashboard.html">Dashboard</a>
+
             <a href="Event.html">Event</a>
+
             <a href="FAQ.html">FAQ</a>
+
             <a href="Feedback.html">Feedback</a>
+
             <a href="Login.html">Login</a>
+
             <a href="Profile.html">Profile</a>
+
             <a href="Register.html">Register</a>
+
         </nav>
+
     </div>
 
+
     <main>
+
         <section class="form-section">
+
             <div class="form-card">
 
+
+                <!-- Form Header -->
+
                 <div class="form-header">
-                    <h1>📝 Student Registration</h1>
-                    <p style="margin-top: 5px; color: var(--text-sub);">Fill in all details to create your account</p>
+
+                    <h1>
+                        📝 Student Registration
+                    </h1>
+
+                    <p style="margin-top: 5px; color: var(--text-sub);">
+
+                        Fill in all details to create your account
+
+                    </p>
+
                 </div>
 
-                <form class="form-body" id="regForm" novalidate>
 
-                    <!-- 1. First Name & Last Name -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fname">👤 First Name:</label>
-                            <div class="input-wrapper">
-                                <input type="text" id="fname" name="firstname" placeholder="Enter First Name">
-                                <span class="status-circle" id="fnameCircle"></span>
-                            </div>
-                            <small class="msg-text" id="fnameErr"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="lname">👤 Last Name:</label>
-                            <div class="input-wrapper">
-                                <input type="text" id="lname" name="lastname" placeholder="Enter Last Name">
-                                <span class="status-circle" id="lnameCircle"></span>
-                            </div>
-                            <small class="msg-text" id="lnameErr"></small>
-                        </div>
-                    </div>
+                <!-- Form -->
 
-                    <!-- 2. Email & Phone -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">✉️ Email ID:</label>
-                            <div class="input-wrapper">
-                                <input type="email" id="email" name="email" placeholder="student@example.com">
-                                <span class="status-circle" id="emailCircle"></span>
-                            </div>
-                            <small class="msg-text" id="emailErr"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">📞 Mobile Number:</label>
-                            <div class="input-wrapper">
-                                <input type="tel" id="phone" name="phone" placeholder="10-digit Indian Number">
-                                <span class="status-circle" id="phoneCircle"></span>
-                            </div>
-                            <small class="msg-text" id="phoneErr"></small>
-                        </div>
-                    </div>
+                <form class="form-body"
+                      id="regForm"
+                      novalidate>
 
-                    <!-- 3. Password & Confirm Password -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="pwd">🔒 Password:</label>
-                            <div class="input-wrapper">
-                                <input type="password" id="pwd" name="password" placeholder="Create Strong Password">
-                                <span class="status-circle" id="pwdCircle"></span>
-                            </div>
-                            <small class="msg-text" id="pwdErr"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="cpwd">🔑 Confirm Password:</label>
-                            <input-wrapper class="input-wrapper">
-                                <input type="password" id="cpwd" name="confirmpassword" placeholder="Re-enter Password">
-                                <span class="status-circle" id="cpwdCircle"></span>
-                            </input-wrapper>
-                            <small class="msg-text" id="cpwdErr"></small>
-                        </div>
-                    </div>
 
-                    <!-- 4. Course & Academic Year -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="course">📚 Course:</label>
-                            <div class="input-wrapper">
-                                <select id="course" name="course">
-                                    <option value="">Select Course</option>
-                                    <option value="B.Tech">B.Tech</option>
-                                    <option value="B.E">B.E</option>
-                                    <option value="BCA">BCA</option>
-                                    <option value="MCA">MCA</option>
-                                </select>
-                                <span class="status-circle" id="courseCircle"></span>
-                            </div>
-                            <small class="msg-text" id="courseErr"></small>
-                        </div>
-                        <div class="form-group">
-                            <label for="year">🎓 Academic Year:</label>
-                            <div class="input-wrapper">
-                                <select id="year" name="year">
-                                    <option value="">Select Year</option>
-                                    <option value="1st Year">1st Year</option>
-                                    <option value="2nd Year">2nd Year</option>
-                                    <option value="3rd Year">3rd Year</option>
-                                    <option value="4th Year">4th Year</option>
-                                </select>
-                                <span class="status-circle" id="yearCircle"></span>
-                            </div>
-                            <small class="msg-text" id="yearErr"></small>
-                        </div>
-                    </div>
+                    <!-- 1. Student ID -->
 
-                    <!-- 5. Gender Selection (Interactive Large Box Cards) -->
                     <div class="form-group">
-                        <label>⚧️ Gender:</label>
+
+                        <label for="studentId">
+
+                            🆔 Student ID / Roll Number:
+
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input type="text"
+                                   id="studentId"
+                                   name="studentId"
+                                   placeholder="25CS075 or D25CS114"
+                                   maxlength="8"
+                                   autocomplete="off">
+
+                            <span class="status-circle"
+                                  id="studentIdCircle">
+                            </span>
+
+                        </div>
+
+                        <small class="msg-text"
+                               id="studentIdErr">
+                        </small>
+
+                    </div>
+
+
+                    <!-- 2. First Name & Last Name -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="fname">
+
+                                👤 First Name:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="text"
+                                       id="fname"
+                                       name="firstname"
+                                       placeholder="Enter First Name">
+
+                                <span class="status-circle"
+                                      id="fnameCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="fnameErr">
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="lname">
+
+                                👤 Last Name:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="text"
+                                       id="lname"
+                                       name="lastname"
+                                       placeholder="Enter Last Name">
+
+                                <span class="status-circle"
+                                      id="lnameCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="lnameErr">
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 3. Email & Phone -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="email">
+
+                                ✉️ Email ID:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="email"
+                                       id="email"
+                                       name="email"
+                                       placeholder="student@example.com">
+
+                                <span class="status-circle"
+                                      id="emailCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="emailErr">
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="phone">
+
+                                📞 Mobile Number:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="tel"
+                                       id="phone"
+                                       name="phone"
+                                       placeholder="10-digit Indian Number">
+
+                                <span class="status-circle"
+                                      id="phoneCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="phoneErr">
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 4. Password & Confirm Password -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="pwd">
+
+                                🔒 Password:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="password"
+                                       id="pwd"
+                                       name="password"
+                                       placeholder="Create Strong Password">
+
+                                <span class="status-circle"
+                                      id="pwdCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="pwdErr">
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cpwd">
+
+                                🔑 Confirm Password:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="password"
+                                       id="cpwd"
+                                       name="confirmpassword"
+                                       placeholder="Re-enter Password">
+
+                                <span class="status-circle"
+                                      id="cpwdCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="cpwdErr">
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 5. Course & Academic Year -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="course">
+
+                                📚 Course:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <select id="course"
+                                        name="course">
+
+                                    <option value="">
+                                        Select Course
+                                    </option>
+
+                                    <option value="B.Tech">
+                                        B.Tech
+                                    </option>
+
+                                    <option value="B.E">
+                                        B.E
+                                    </option>
+
+                                    <option value="BCA">
+                                        BCA
+                                    </option>
+
+                                    <option value="MCA">
+                                        MCA
+                                    </option>
+
+                                </select>
+
+                                <span class="status-circle"
+                                      id="courseCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="courseErr">
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="year">
+
+                                🎓 Academic Year:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <select id="year"
+                                        name="year">
+
+                                    <option value="">
+                                        Select Year
+                                    </option>
+
+                                    <option value="1st Year">
+                                        1st Year
+                                    </option>
+
+                                    <option value="2nd Year">
+                                        2nd Year
+                                    </option>
+
+                                    <option value="3rd Year">
+                                        3rd Year
+                                    </option>
+
+                                    <option value="4th Year">
+                                        4th Year
+                                    </option>
+
+                                </select>
+
+                                <span class="status-circle"
+                                      id="yearCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="yearErr">
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 6. Gender -->
+
+                    <div class="form-group">
+
+                        <label>
+                            ⚧️ Gender:
+                        </label>
+
                         <div class="gender-container">
+
                             <label class="gender-card">
-                                <input type="radio" name="gender" value="Male"> 👨 Male
+
+                                <input type="radio"
+                                       name="gender"
+                                       value="Male">
+
+                                👨 Male
+
                             </label>
+
+
                             <label class="gender-card">
-                                <input type="radio" name="gender" value="Female"> 👩 Female
+
+                                <input type="radio"
+                                       name="gender"
+                                       value="Female">
+
+                                👩 Female
+
                             </label>
+
+
                             <label class="gender-card">
-                                <input type="radio" name="gender" value="Other"> 🧑 Other
+
+                                <input type="radio"
+                                       name="gender"
+                                       value="Other">
+
+                                🧑 Other
+
                             </label>
+
                         </div>
-                        <small class="msg-text" id="genderErr"></small>
+
+                        <small class="msg-text"
+                               id="genderErr">
+                        </small>
+
                     </div>
 
-                    <!-- 6. Terms & Conditions Box -->
+
+                    <!-- 7. Terms & Conditions -->
+
                     <div class="form-group">
+
                         <div class="terms-card">
-                            <input type="checkbox" id="terms" name="terms">
-                            <label for="terms">I accept all the Terms & Conditions of StudentHub</label>
+
+                            <input type="checkbox"
+                                   id="terms"
+                                   name="terms">
+
+                            <label for="terms">
+
+                                I accept all the Terms & Conditions of StudentHub
+
+                            </label>
+
                         </div>
-                        <small class="msg-text" id="termsErr"></small>
+
+                        <small class="msg-text"
+                               id="termsErr">
+                        </small>
+
                     </div>
+
 
                     <!-- Submit Button -->
+
                     <div style="margin-top: 10px;">
-                        <button type="submit" id="submitBtn" class="btn-submit">Submit Registration →</button>
+
+                        <button type="submit"
+                                id="submitBtn"
+                                class="btn-submit">
+
+                            Submit Registration →
+
+                        </button>
+
                     </div>
 
+
                     <div class="login-link">
-                        <span>Already have an account? </span>
-                        <a href="Login.html">Login Here</a>
+
+                        <span>
+                            Already have an account?
+                        </span>
+
+                        <a href="Login.html">
+                            Login Here
+                        </a>
+
                     </div>
 
                 </form>
+
             </div>
+
         </section>
 
+
         <!-- Dynamic Modal Popup -->
-        <div class="modal-overlay" id="customModal">
+
+        <div class="modal-overlay"
+             id="customModal">
+
             <div class="modal-box">
-                <button class="modal-close">&times;</button>
-                <h3 style="color:#0284C7; margin-bottom: 12px;">🎉 Registration Successful!</h3>
-                <p style="text-align: center; margin-bottom: 8px;">Your official StudentHub account has been created.</p>
-                <p style="text-align: center; margin-bottom: 15px; color: var(--text-sub); font-size: 14px;">Please proceed to login with your credentials.</p>
-                <a href="Login.html" style="text-decoration: none;">
-                    <button class="btn-submit btn-close-modal" style="width: 100%;">Proceed to Login</button>
+
+                <button class="modal-close">
+                    &times;
+                </button>
+
+                <h3 style="color:#0284C7; margin-bottom: 12px;">
+
+                    🎉 Registration Successful!
+
+                </h3>
+
+                <p style="text-align: center; margin-bottom: 8px;">
+
+                    Your official StudentHub account has been created.
+
+                </p>
+
+                <p style="text-align: center; margin-bottom: 15px; color: var(--text-sub); font-size: 14px;">
+
+                    Please proceed to login with your credentials.
+
+                </p>
+
+                <a href="Login.html"
+                   style="text-decoration: none;">
+
+                    <button class="btn-submit btn-close-modal"
+                            style="width: 100%;">
+
+                        Proceed to Login
+
+                    </button>
+
                 </a>
+
             </div>
+
         </div>
+
     </main>
 
+
+    <!-- Footer -->
+
     <footer>
-        <h3>STUDENTHUB PORTAL</h3>
 
-        <p class="tag">Learn • Connect • Grow</p>
+        <h3>
+            STUDENTHUB PORTAL
+        </h3>
 
-        <p>© 2026 StudentHub Portal | All Rights Reserved</p>
+        <p class="tag">
+            Learn • Connect • Grow
+        </p>
 
-        <p><b>Designed & Developed by Panvi Patel</b></p>
+        <p>
+            © 2026 StudentHub Portal | All Rights Reserved
+        </p>
+
+        <p>
+            <b>Designed & Developed by Panvi Patel</b>
+        </p>
+
     </footer>
 
+
     <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom External JavaScript -->
+    <!-- Custom JavaScript -->
+
     <script src="script.js"></script>
 
 </body>
