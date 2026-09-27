@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Register - StudentHub Portal</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Color Theme Variables */
+
+        :root {
+            --bg-color: #F8FAFC;
+            --text-color: #0F172A;
+            --card-bg: #FFFFFF;
+            --card-light: #F1F5F9;
+            --header-bg: #0B2545;
+            --navbar-bg: #134074;
+            --border-color: #CBD5E1;
+            --text-sub: #475569;
+        }
+
+        body.dark-mode {
+            --bg-color: #0F172A;
+            --text-color: #F8FAFC;
+            --card-bg: #1E293B;
+            --card-light: #334155;
+            --header-bg: #020617;
+            --navbar-bg: #0F172A;
+            --border-color: #334155;
+            --text-sub: #94A3B8;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+
+        /* ---------- Notification Banner ---------- */
+
+        .notification-banner {
+            background: #00A8E8;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .notification-banner .close-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+
+        /* ---------- Header & Theme Button ---------- */
+
+        .header {
+            background: var(--header-bg);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .logo {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .title p {
+            color: #8DA9C4;
+            margin-top: 8px;
+        }
+
+        .theme-btn {
+            background: #00A8E8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* ---------- Navbar & Mobile Menu ---------- */
+
+        .nav-container {
+            background: var(--navbar-bg);
+            position: relative;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+
+        .navbar {
+            background: var(--navbar-bg);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 14px 0px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            white-space: nowrap;
+            padding: 0 10px;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #8DA9C4;
+        }
+
+
+        /* ---------- Form Section Styling ---------- */
+
+        .form-section {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        .form-header {
+            background: var(--card-light);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .form-header h1 {
+            font-size: 28px;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .form-body {
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: var(--text-color);
+            font-size: 15px;
+        }
+
+
+        /* ---------- Input Wrapper ---------- */
+
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="password"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 40px 12px 14px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0284C7;
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+
+        /* ---------- Student ID ---------- */
+
+        #studentId {
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+
+        /* ---------- Circle Icons ---------- */
+
+        .status-circle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            pointer-events: none;
+        }
+
+        .valid-circle {
+            background-color: #10b981;
+            display: flex;
+        }
+
+        .invalid-circle {
+            background-color: #ef4444;
+            display: flex;
+        }
+
+        .is-invalid-input {
+            border-color: #ef4444 !important;
+        }
+
+        .is-valid-input {
+            border-color: #10b981 !important;
+        }
+
+
+        /* ---------- Error Text ---------- */
+
+        .msg-text {
+            font-size: 12px;
+            font-weight: bold;
+            color: #ef4444;
+            margin-top: 2px;
+            display: none;
+        }
+
+
+        /* ---------- Gender ---------- */
+
+        .gender-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        .gender-card {
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            background: var(--card-light);
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .gender-card:hover {
+            border-color: #0284C7;
+            background: rgba(2, 132, 199, 0.05);
+        }
+
+        .gender-card input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #0284C7;
+            cursor: pointer;
+        }
+
+
+        /* ---------- Terms Box ---------- */
+
+        .terms-card {
+            background: var(--card-light);
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .terms-card:hover {
+            border-color: #0284C7;
+        }
+
+        .terms-card input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #0284C7;
+            cursor: pointer;
+        }
+
+        .terms-card label {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+
+        /* ---------- Submit Button ---------- */
+
+        .btn-submit {
+            background-color: #0284C7;
+            color: white;
+            border: none;
+            padding: 14px 50px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0px 2px 6px rgba(2, 132, 199, 0.3);
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: #0086ba;
+        }
+
+        .login-link {
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .login-link a {
+            color: #0284C7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+        /* ---------- Modal Popup ---------- */
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+
+        /* ---------- Footer ---------- */
+
+        footer {
+            background: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        .tag {
+            color: #8DA9C4;
+        }
+
+
+        /* ---------- Responsive ---------- */
+
+        @media(max-width: 767px) {
+
+            .hamburger {
+                display: block;
+            }
+
+            .navbar {
+                display: none;
+                flex-direction: column;
+                padding: 10px 0;
+                gap: 12px;
+            }
+
+            .navbar.show {
+                display: flex;
+            }
+
+            /* Gender remains 3 equal columns */
+            .gender-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .gender-card {
+                padding: 10px 5px;
+                font-size: 13px;
+            }
+        }
+
+
+        @media(min-width: 768px) {
+
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- Notification Banner -->
+
+    <div class="notification-banner" id="banner">
+
+        <span>
+            📝 New Student Registration: Fill in your official credentials to create an account!
+        </span>
+
+        <button class="close-btn">
+            &times;
+        </button>
+
+    </div>
+
+
+    <!-- Header -->
+
+    <header class="header">
+
+        <img src="logo.jpeg"
+             class="logo"
+             alt="logo">
+
+        <div class="title">
+
+            <h1>
+                WELCOME TO STUDENTHUB PORTAL
+            </h1>
+
+            <p>
+                <i>Learn • Connect • Grow</i>
+            </p>
+
+        </div>
+
+        <button class="theme-btn"
+                id="themeToggle">
+
+            🌙 Dark Mode
+
+        </button>
+
+    </header>
+
+
+    <!-- Navbar -->
+
+    <div class="nav-container">
+
+        <button class="hamburger">
+            ☰ Menu
+        </button>
+
+        <nav class="navbar"
+             id="navLinks">
+
+            <a href="Home.html">Home</a>
+
+            <a href="About.html">About</a>
+
+            <a href="Contact.html">Contact</a>
+
+            <a href="Dashboard.html">Dashboard</a>
+
+            <a href="Event.html">Event</a>
+
+            <a href="FAQ.html">FAQ</a>
+
+            <a href="Feedback.html">Feedback</a>
+
+            <a href="Login.html">Login</a>
+
+            <a href="Profile.html">Profile</a>
+
+            <a href="Register.html">Register</a>
+
+        </nav>
+
+    </div>
+
+
+    <main>
+
+        <section class="form-section">
+
+            <div class="form-card">
+
+
+                <!-- Form Header -->
+
+                <div class="form-header">
+
+                    <h1>
+                        📝 Student Registration
+                    </h1>
+
+                    <p style="margin-top: 5px; color: var(--text-sub);">
+
+                        Fill in all details to create your account
+
+                    </p>
+
+                </div>
+
+
+                <!-- Form -->
+
+                <form class="form-body" id="regForm" action="process.php" method="POST" novalidate>
+
+                    <!-- 1. Student ID -->
+
+                    <div class="form-group">
+
+                        <label for="studentId">
+
+                            🆔 Student ID / Roll Number:
+
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input type="text"
+                                   id="studentId"
+                                   name="studentId"
+                                   placeholder="25CS075 or D25CS114"
+                                   maxlength="8"
+                                   autocomplete="off">
+
+                            <span class="status-circle"
+                                  id="studentIdCircle">
+                            </span>
+
+                        </div>
+
+                        <small class="msg-text"
+                               id="studentIdErr">
+                        </small>
+
+                    </div>
+
+
+                    <!-- 2. First Name & Last Name -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="fname">
+
+                                👤 First Name:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="text"
+                                       id="fname"
+                                       name="firstname"
+                                       placeholder="Enter First Name">
+
+                                <span class="status-circle"
+                                      id="fnameCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="fnameErr">
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="lname">
+
+                                👤 Last Name:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="text"
+                                       id="lname"
+                                       name="lastname"
+                                       placeholder="Enter Last Name">
+
+                                <span class="status-circle"
+                                      id="lnameCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="lnameErr">
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 3. Email & Phone -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="email">
+
+                                ✉️ Email ID:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="email"
+                                       id="email"
+                                       name="email"
+                                       placeholder="student@example.com">
+
+                                <span class="status-circle"
+                                      id="emailCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="emailErr">
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="phone">
+
+                                📞 Mobile Number:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="tel"
+                                       id="phone"
+                                       name="phone"
+                                       placeholder="10-digit Indian Number">
+
+                                <span class="status-circle"
+                                      id="phoneCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="phoneErr">
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 4. Password & Confirm Password -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="pwd">
+
+                                🔒 Password:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="password"
+                                       id="pwd"
+                                       name="password"
+                                       placeholder="Create Strong Password">
+
+                                <span class="status-circle"
+                                      id="pwdCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="pwdErr">
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cpwd">
+
+                                🔑 Confirm Password:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <input type="password"
+                                       id="cpwd"
+                                       name="confirmpassword"
+                                       placeholder="Re-enter Password">
+
+                                <span class="status-circle"
+                                      id="cpwdCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="cpwdErr">
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 5. Course & Academic Year -->
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="course">
+
+                                📚 Course:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <select id="course"
+                                        name="course">
+
+                                    <option value="">
+                                        Select Course
+                                    </option>
+
+                                    <option value="B.Tech">
+                                        B.Tech
+                                    </option>
+
+                                    <option value="B.E">
+                                        B.E
+                                    </option>
+
+                                    <option value="BCA">
+                                        BCA
+                                    </option>
+
+                                    <option value="MCA">
+                                        MCA
+                                    </option>
+
+                                </select>
+
+                                <span class="status-circle"
+                                      id="courseCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="courseErr">
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="year">
+
+                                🎓 Academic Year:
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <select id="year"
+                                        name="year">
+
+                                    <option value="">
+                                        Select Year
+                                    </option>
+
+                                    <option value="1st Year">
+                                        1st Year
+                                    </option>
+
+                                    <option value="2nd Year">
+                                        2nd Year
+                                    </option>
+
+                                    <option value="3rd Year">
+                                        3rd Year
+                                    </option>
+
+                                    <option value="4th Year">
+                                        4th Year
+                                    </option>
+
+                                </select>
+
+                                <span class="status-circle"
+                                      id="yearCircle">
+                                </span>
+
+                            </div>
+
+                            <small class="msg-text"
+                                   id="yearErr">
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 6. Gender -->
+
+                    <div class="form-group">
+
+                        <label>
+                            ⚧️ Gender:
+                        </label>
+
+                        <div class="gender-container">
+
+                            <label class="gender-card">
+
+                                <input type="radio"
+                                       name="gender"
+                                       value="Male">
+
+                                👨 Male
+
+                            </label>
+
+
+                            <label class="gender-card">
+
+                                <input type="radio"
+                                       name="gender"
+                                       value="Female">
+
+                                👩 Female
+
+                            </label>
+
+
+                            <label class="gender-card">
+
+                                <input type="radio"
+                                       name="gender"
+                                       value="Other">
+
+                                🧑 Other
+
+                            </label>
+
+                        </div>
+
+                        <small class="msg-text"
+                               id="genderErr">
+                        </small>
+
+                    </div>
+
+
+                    <!-- 7. Terms & Conditions -->
+
+                    <div class="form-group">
+
+                        <div class="terms-card">
+
+                            <input type="checkbox"
+                                   id="terms"
+                                   name="terms">
+
+                            <label for="terms">
+
+                                I accept all the Terms & Conditions of StudentHub
+
+                            </label>
+
+                        </div>
+
+                        <small class="msg-text"
+                               id="termsErr">
+                        </small>
+
+                    </div>
+
+
+                    <!-- Submit Button -->
+
+                    <div style="margin-top: 10px;">
+
+                        <button type="submit"
+                                id="submitBtn"
+                                class="btn-submit">
+
+                            Submit Registration →
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="login-link">
+
+                        <span>
+                            Already have an account?
+                        </span>
+
+                        <a href="Login.html">
+                            Login Here
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- Dynamic Modal Popup -->
+
+        <div class="modal-overlay"
+             id="customModal">
+
+            <div class="modal-box">
+
+                <button class="modal-close">
+                    &times;
+                </button>
+
+                <h3 style="color:#0284C7; margin-bottom: 12px;">
+
+                    🎉 Registration Successful!
+
+                </h3>
+
+                <p style="text-align: center; margin-bottom: 8px;">
+
+                    Your official StudentHub account has been created.
+
+                </p>
+
+                <p style="text-align: center; margin-bottom: 15px; color: var(--text-sub); font-size: 14px;">
+
+                    Please proceed to login with your credentials.
+
+                </p>
+
+                <a href="Login.html"
+                   style="text-decoration: none;">
+
+                    <button class="btn-submit btn-close-modal"
+                            style="width: 100%;">
+
+                        Proceed to Login
+
+                    </button>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h3>
+            STUDENTHUB PORTAL
+        </h3>
+
+        <p class="tag">
+            Learn • Connect • Grow
+        </p>
+
+        <p>
+            © 2026 StudentHub Portal | All Rights Reserved
+        </p>
+
+        <p>
+            <b>Designed & Developed by Panvi Patel</b>
+        </p>
+
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
