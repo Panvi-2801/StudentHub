@@ -40,5 +40,68 @@
         "category": "Cyber Security",
         "date": "2026-10-20",
         "venue": "Seminar Hall"
+    },
+    {
+        "id": 7,
+        "name": "Data Science Workshop",
+        "category": "Data Science",
+        "date": "2026-10-25",
+        "venue": "Computer Lab"
+    },
+    {
+        "id": 8,
+        "name": "Cloud Computing Seminar",
+        "category": "Cloud",
+        "date": "2026-11-01",
+        "venue": "Seminar Hall"
+    },
+    {
+        "id": 9,
+        "name": "Machine Learning Bootcamp",
+        "category": "AI",
+        "date": "2026-11-05",
+        "venue": "Innovation Lab"
+    },
+    {
+        "id": 10,
+        "name": "Coding Competition",
+        "category": "Programming",
+        "date": "2026-11-10",
+        "venue": "Computer Lab"
+    },
+    {
+        "id": 11,
+        "name": "Entrepreneurship Talk",
+        "category": "Business",
+        "date": "2026-11-15",
+        "venue": "CHARUSAT Auditorium"
+    },
+    {
+        "id": 12,
+        "name": "IoT Project Exhibition",
+        "category": "IoT",
+        "date": "2026-11-20",
+        "venue": "Exhibition Hall"
+    },
+    {
+        "id": 13,
+        "name": "App Development Workshop",
+        "category": "Mobile Development",
+        "date": "2026-11-25",
+        "venue": "Computer Lab"
+    },
+    {
+        "id": 14,
+        "name": "Tech Quiz Competition",
+        "category": "Technology",
+        "date": "2026-12-01",
+        "venue": "Room 102"
+    },
+    {
+        "id": 15,
+        "name": "Project Showcase 2026",
+        "category": "Projects",
+        "date": "2026-12-05",
+        "venue": "CHARUSAT Auditorium"
     }
 ]

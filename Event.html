@@ -18,7 +18,6 @@
             transition: background 0.3s, color 0.3s;
         }
 
-        /* Color Theme Variables */
         :root {
             --bg-color: #F8FAFC;
             --text-color: #0F172A;
@@ -48,6 +47,7 @@
         }
 
         /* ---------- Notification Banner ---------- */
+
         .notification-banner {
             background: #00A8E8;
             color: #fff;
@@ -67,7 +67,8 @@
             cursor: pointer;
         }
 
-        /* ---------- Header & Theme Button ---------- */
+        /* ---------- Header ---------- */
+
         .header {
             background: var(--header-bg);
             color: white;
@@ -111,7 +112,8 @@
             transform: scale(1.05);
         }
 
-        /* ---------- Navbar & Mobile Menu ---------- */
+        /* ---------- Navbar ---------- */
+
         .nav-container {
             background: var(--navbar-bg);
             position: relative;
@@ -153,7 +155,8 @@
             color: #8DA9C4;
         }
 
-        /* ---------- Event Details Section ---------- */
+        /* ---------- Event Details ---------- */
+
         .hero-banner {
             background: var(--card-bg);
             padding: 40px 20px;
@@ -251,7 +254,8 @@
             color: white;
         }
 
-        /* ---------- Modal Popup ---------- */
+        /* ---------- Modal ---------- */
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -289,6 +293,7 @@
         }
 
         /* ---------- Footer ---------- */
+
         footer {
             background: var(--header-bg);
             color: white;
@@ -304,36 +309,8 @@
             color: #8DA9C4;
         }
 
-        /* ---------- Responsive Breakpoints ---------- */
-        @media(max-width: 767px) {
-            .hamburger {
-                display: block;
-            }
+        /* ---------- Dynamic Event List ---------- */
 
-            .navbar {
-                display: none;
-                flex-direction: column;
-                padding: 10px 0;
-                gap: 12px;
-            }
-
-            .navbar.show {
-                display: flex;
-            }
-        }
-
-        @media(min-width: 768px) {
-            .header {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-
-            .event-grid {
-                grid-template-columns: 3fr 2fr;
-            }
-        }
-
-        /* ---------- Dynamic Event List - Added ---------- */
         .dynamic-events-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -389,9 +366,35 @@
             margin-bottom: 7px;
         }
 
+        /* ---------- Loading & Error ---------- */
+
+        .loading-message {
+            text-align: center;
+            padding: 20px;
+            color: #0284C7;
+            font-weight: bold;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            color: #dc2626;
+            font-weight: bold;
+            display: none;
+        }
+
+        .no-events {
+            text-align: center;
+            color: var(--text-sub);
+            padding: 20px;
+        }
+
+        /* ---------- Pagination ---------- */
+
         .pagination {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 8px;
             margin-top: 20px;
             flex-wrap: wrap;
@@ -406,20 +409,55 @@
             cursor: pointer;
         }
 
-        .pagination button.active {
+        .pagination button:hover {
             background: #0284C7;
             color: white;
         }
 
-        .no-events {
-            text-align: center;
-            color: var(--text-sub);
-            padding: 20px;
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
+        .page-info {
+            color: var(--text-sub);
+            padding: 8px 10px;
+            font-weight: bold;
+        }
+
+        /* ---------- Responsive ---------- */
+
         @media(max-width: 767px) {
+
+            .hamburger {
+                display: block;
+            }
+
+            .navbar {
+                display: none;
+                flex-direction: column;
+                padding: 10px 0;
+                gap: 12px;
+            }
+
+            .navbar.show {
+                display: flex;
+            }
+
             .event-controls {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media(min-width: 768px) {
+
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .event-grid {
+                grid-template-columns: 3fr 2fr;
             }
         }
     </style>
@@ -433,8 +471,9 @@
         <button class="close-btn">&times;</button>
     </div>
 
-    <!-- Header with Theme Switcher -->
+    <!-- Header -->
     <header class="header">
+
         <img src="logo.jpeg" class="logo" alt="logo">
 
         <div class="title">
@@ -442,13 +481,21 @@
             <p><i>Learn • Connect • Grow</i></p>
         </div>
 
-        <button class="theme-btn" id="themeToggle">🌙 Dark Mode</button>
+        <button class="theme-btn" id="themeToggle">
+            🌙 Dark Mode
+        </button>
+
     </header>
 
-    <!-- Navbar with Mobile Hamburger Button -->
+    <!-- Navbar -->
     <div class="nav-container">
-        <button class="hamburger">☰ Menu</button>
+
+        <button class="hamburger">
+            ☰ Menu
+        </button>
+
         <nav class="navbar" id="navLinks">
+
             <a href="Home.html">Home</a>
             <a href="About.html">About</a>
             <a href="Contact.html">Contact</a>
@@ -459,321 +506,394 @@
             <a href="Login.html">Login</a>
             <a href="Profile.html">Profile</a>
             <a href="Register.html">Register</a>
+
         </nav>
+
     </div>
 
     <main>
+
         <!-- Event Header -->
         <section class="hero-banner">
-            <h1>🎉 Annual Tech & Innovation Symposium 2026</h1>
-            <p style="margin-top: 10px; color: var(--text-sub);">Explore the future of Artificial Intelligence, Software Engineering & Robotics.</p>
+
+            <h1>
+                🎉 Annual Tech & Innovation Symposium 2026
+            </h1>
+
+            <p style="margin-top: 10px; color: var(--text-sub);">
+                Explore the future of Artificial Intelligence,
+                Software Engineering & Robotics.
+            </p>
+
         </section>
 
         <!-- Main Content Grid -->
         <section class="event-grid">
 
-            <!-- Left Side: Details & Agenda -->
+            <!-- Left Side -->
             <div>
+
                 <div class="card-box">
+
                     <div class="card-header-title">
                         <h2>📌 About the Event</h2>
                     </div>
+
                     <p style="line-height: 1.6; color: var(--text-sub); margin-bottom: 15px;">
-                        Join us for the premier flagship technical event of StudentHub Portal! The Tech & Innovation Symposium brings together industry experts, researchers, and aspiring student developers for a full day of insightful keynote sessions, interactive project demonstrations, and hands-on technical workshops.
+
+                        Join us for the premier flagship technical event
+                        of StudentHub Portal! The Tech & Innovation Symposium
+                        brings together industry experts, researchers, and
+                        aspiring student developers for a full day of
+                        insightful keynote sessions, interactive project
+                        demonstrations, and hands-on technical workshops.
+
                     </p>
+
                     <p style="line-height: 1.6; color: var(--text-sub);">
-                        Whether you are looking to showcase your academic projects, network with campus leaders, or learn cutting-edge technology trends, this event is designed for you!
+
+                        Whether you are looking to showcase your academic
+                        projects, network with campus leaders, or learn
+                        cutting-edge technology trends, this event is
+                        designed for you!
+
                     </p>
+
                 </div>
 
                 <div class="card-box">
+
                     <div class="card-header-title">
                         <h2>🗓️ Event Agenda</h2>
                     </div>
+
                     <table class="agenda-table">
+
                         <tr>
-                            <td width="35%"><b style="color: #0284C7;">09:30 AM - 10:30 AM</b></td>
-                            <td>Opening Ceremony & Keynote Address</td>
+                            <td width="35%">
+                                <b style="color: #0284C7;">
+                                    09:30 AM - 10:30 AM
+                                </b>
+                            </td>
+
+                            <td>
+                                Opening Ceremony & Keynote Address
+                            </td>
                         </tr>
+
                         <tr>
-                            <td><b style="color: #0284C7;">10:45 AM - 01:00 PM</b></td>
-                            <td>Student Project Exhibition & Poster Presentations</td>
+                            <td>
+                                <b style="color: #0284C7;">
+                                    10:45 AM - 01:00 PM
+                                </b>
+                            </td>
+
+                            <td>
+                                Student Project Exhibition & Poster Presentations
+                            </td>
                         </tr>
+
                         <tr>
-                            <td><b style="color: #0284C7;">01:00 PM - 02:00 PM</b></td>
-                            <td>Networking Lunch & Interactive Stalls</td>
+                            <td>
+                                <b style="color: #0284C7;">
+                                    01:00 PM - 02:00 PM
+                                </b>
+                            </td>
+
+                            <td>
+                                Networking Lunch & Interactive Stalls
+                            </td>
                         </tr>
+
                         <tr>
-                            <td><b style="color: #0284C7;">02:15 PM - 04:30 PM</b></td>
-                            <td>Hands-on Coding Workshop & Prize Distribution</td>
+                            <td>
+                                <b style="color: #0284C7;">
+                                    02:15 PM - 04:30 PM
+                                </b>
+                            </td>
+
+                            <td>
+                                Hands-on Coding Workshop & Prize Distribution
+                            </td>
                         </tr>
+
                     </table>
+
                 </div>
+
             </div>
 
-            <!-- Right Side: Quick Info & Action -->
+            <!-- Right Side -->
             <div>
+
                 <div class="card-box quick-details">
+
                     <div class="card-header-title">
                         <h2>⚡ Quick Details</h2>
                     </div>
-                    <p><b>📅 Date:</b> August 12, 2026</p>
-                    <p><b>⏰ Time:</b> 09:30 AM – 04:30 PM</p>
-                    <p><b>📍 Venue:</b> University Main Auditorium</p>
-                    <p><b>🎓 Mode:</b> In-Person / Hybrid</p>
-                    <p><b>🎟️ Eligibility:</b> Open for all Departments</p>
+
+                    <p>
+                        <b>📅 Date:</b> August 12, 2026
+                    </p>
+
+                    <p>
+                        <b>⏰ Time:</b> 09:30 AM – 04:30 PM
+                    </p>
+
+                    <p>
+                        <b>📍 Venue:</b> University Main Auditorium
+                    </p>
+
+                    <p>
+                        <b>🎓 Mode:</b> In-Person / Hybrid
+                    </p>
+
+                    <p>
+                        <b>🎟️ Eligibility:</b> Open for all Departments
+                    </p>
 
                     <div style="margin-top: 25px;">
-                        <a href="Event_register.html" class="btn-custom">Register Now →</a>
-                        <button class="btn-custom btn-open-modal" style="background: transparent; color: #0284C7; border: 2px solid #0284C7; box-shadow: none; margin-top: 10px;">Event Highlights 💡</button>
+
+                        <a href="Event_register.html" class="btn-custom">
+                            Register Now →
+                        </a>
+
+                        <button
+                            class="btn-custom btn-open-modal"
+                            style="background: transparent; color: #0284C7; border: 2px solid #0284C7; box-shadow: none; margin-top: 10px;">
+
+                            Event Highlights 💡
+
+                        </button>
+
                     </div>
+
                 </div>
+
             </div>
 
         </section>
 
-        <!-- Dynamic Event List - Added -->
+
+        <!-- ========================================= -->
+        <!-- DYNAMIC EVENT LIST -->
+        <!-- ========================================= -->
+
         <section class="dynamic-events-section">
 
             <div class="dynamic-events-box">
 
                 <h2>📋 All Events</h2>
 
+                <!-- Search + Filter + Sort -->
+
                 <div class="event-controls">
 
-                    <input type="text" id="searchInput" placeholder="🔍 Search events...">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="🔍 Search events...">
 
                     <select id="categoryFilter">
-                        <option value="all">All Categories</option>
-                        <option value="AI">AI</option>
-                        <option value="Web Development">Web Development</option>
-                        <option value="Robotics">Robotics</option>
-                        <option value="Software">Software</option>
-                        <option value="Cyber Security">Cyber Security</option>
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+                        <option value="AI">
+                            AI
+                        </option>
+
+                        <option value="Web Development">
+                            Web Development
+                        </option>
+
+                        <option value="Robotics">
+                            Robotics
+                        </option>
+
+                        <option value="Software">
+                            Software
+                        </option>
+
+                        <option value="Cyber Security">
+                            Cyber Security
+                        </option>
+
+                        <option value="Data Science">
+                            Data Science
+                        </option>
+
+                        <option value="Cloud">
+                            Cloud
+                        </option>
+
+                        <option value="Programming">
+                            Programming
+                        </option>
+
+                        <option value="Business">
+                            Business
+                        </option>
+
+                        <option value="IoT">
+                            IoT
+                        </option>
+
+                        <option value="Mobile Development">
+                            Mobile Development
+                        </option>
+
+                        <option value="Technology">
+                            Technology
+                        </option>
+
+                        <option value="Projects">
+                            Projects
+                        </option>
+
                     </select>
 
                     <select id="sortSelect">
-                        <option value="default">Sort By</option>
-                        <option value="nameAsc">Name A-Z</option>
-                        <option value="nameDesc">Name Z-A</option>
-                        <option value="dateAsc">Date: Old to New</option>
-                        <option value="dateDesc">Date: New to Old</option>
+
+                        <option value="default">
+                            Sort By
+                        </option>
+
+                        <option value="nameAsc">
+                            Name A-Z
+                        </option>
+
+                        <option value="nameDesc">
+                            Name Z-A
+                        </option>
+
+                        <option value="dateAsc">
+                            Date: Old to New
+                        </option>
+
+                        <option value="dateDesc">
+                            Date: New to Old
+                        </option>
+
                     </select>
 
                 </div>
 
+
+                <!-- Loading Message -->
+
+                <div id="eventLoading" class="loading-message">
+                    ⏳ Loading events...
+                </div>
+
+
+                <!-- Error Message -->
+
+                <div id="eventError" class="error-message">
+                    ❌ Error loading events.
+                </div>
+
+
+                <!-- Dynamic Event Container -->
+
                 <div id="eventContainer"></div>
 
-                <div class="pagination" id="pagination"></div>
+
+                <!-- Pagination -->
+
+                <div class="pagination">
+
+                    <button id="prevButton">
+                        ← Previous
+                    </button>
+
+                    <span id="pageInfo" class="page-info">
+                        Page 1
+                    </span>
+
+                    <button id="nextButton">
+                        Next →
+                    </button>
+
+                </div>
 
             </div>
 
         </section>
 
-        <!-- Dynamic Modal Popup -->
+
+        <!-- Modal Popup -->
+
         <div class="modal-overlay" id="customModal">
+
             <div class="modal-box">
-                <button class="modal-close">&times;</button>
-                <h3 style="color:#0284C7; margin-bottom: 12px;">💡 Event Highlights</h3>
-                <p style="text-align: left; margin-bottom: 8px;">• <b>Certificate:</b> Official participation certificate provided to all attendees.</p>
-                <p style="text-align: left; margin-bottom: 8px;">• <b>Networking:</b> Connect with top industry professionals & alumni.</p>
-                <p style="text-align: left; margin-bottom: 15px;">• <b>Prizes:</b> Cash rewards & trophies for winning project demonstrations.</p>
-                <button class="btn-custom btn-close-modal">Got It!</button>
+
+                <button class="modal-close">
+                    &times;
+                </button>
+
+                <h3 style="color:#0284C7; margin-bottom: 12px;">
+                    💡 Event Highlights
+                </h3>
+
+                <p style="text-align: left; margin-bottom: 8px;">
+                    • <b>Certificate:</b>
+                    Official participation certificate provided to all attendees.
+                </p>
+
+                <p style="text-align: left; margin-bottom: 8px;">
+                    • <b>Networking:</b>
+                    Connect with top industry professionals & alumni.
+                </p>
+
+                <p style="text-align: left; margin-bottom: 15px;">
+                    • <b>Prizes:</b>
+                    Cash rewards & trophies for winning project demonstrations.
+                </p>
+
+                <button class="btn-custom btn-close-modal">
+                    Got It!
+                </button>
+
             </div>
+
         </div>
+
     </main>
 
+
+    <!-- Footer -->
+
     <footer>
-        <h3>STUDENTHUB PORTAL</h3>
 
-        <p class="tag">Learn • Connect • Grow</p>
+        <h3>
+            STUDENTHUB PORTAL
+        </h3>
 
-        <p>© 2026 StudentHub Portal | All Rights Reserved</p>
+        <p class="tag">
+            Learn • Connect • Grow
+        </p>
 
-        <p><b>Designed & Developed by Panvi Patel</b></p>
+        <p>
+            © 2026 StudentHub Portal | All Rights Reserved
+        </p>
+
+        <p>
+            <b>Designed & Developed by Panvi Patel</b>
+        </p>
+
     </footer>
 
+
     <!-- Bootstrap JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom External JavaScript -->
+
     <script src="script.js"></script>
 
-    <!-- Fetch API + Dynamic Event List -->
-    <script>
-        let events = [];
-        let currentPage = 1;
-        let itemsPerPage = 3;
-
-        fetch("data/events.json")
-            .then(response => response.json())
-            .then(data => {
-                events = data;
-                displayEvents();
-            })
-            .catch(error => {
-                document.getElementById("eventContainer").innerHTML =
-                    '<p class="no-events">Unable to load events.</p>';
-                console.log("Error loading events:", error);
-            });
-
-
-        function displayEvents() {
-
-            let searchText = document.getElementById("searchInput").value.toLowerCase();
-            let category = document.getElementById("categoryFilter").value;
-
-            let filteredEvents = events.filter(event => {
-
-                let matchSearch =
-                    event.name.toLowerCase().includes(searchText) ||
-                    event.category.toLowerCase().includes(searchText);
-
-                let matchCategory =
-                    category === "all" ||
-                    event.category === category;
-
-                return matchSearch && matchCategory;
-            });
-
-
-            let start = (currentPage - 1) * itemsPerPage;
-            let end = start + itemsPerPage;
-
-            let pageEvents = filteredEvents.slice(start, end);
-
-            let container = document.getElementById("eventContainer");
-
-            container.innerHTML = "";
-
-
-            if (pageEvents.length === 0) {
-
-                container.innerHTML =
-                    '<p class="no-events">No events found.</p>';
-
-            } else {
-
-                pageEvents.forEach(event => {
-
-                    container.innerHTML += `
-                        <div class="dynamic-event-card">
-
-                            <h3>${event.name}</h3>
-
-                            <p><b>📚 Category:</b> ${event.category}</p>
-
-                            <p><b>📅 Date:</b> ${event.date}</p>
-
-                            <p><b>📍 Venue:</b> ${event.venue}</p>
-
-                        </div>
-                    `;
-
-                });
-            }
-
-            displayPagination(filteredEvents.length);
-        }
-
-
-        document.getElementById("searchInput").addEventListener("input", function () {
-
-            currentPage = 1;
-            displayEvents();
-
-        });
-
-
-        document.getElementById("categoryFilter").addEventListener("change", function () {
-
-            currentPage = 1;
-            displayEvents();
-
-        });
-
-
-        document.getElementById("sortSelect").addEventListener("change", function () {
-
-            let value = this.value;
-
-            if (value === "nameAsc") {
-
-                events.sort((a, b) =>
-                    a.name.localeCompare(b.name)
-                );
-
-            }
-
-            if (value === "nameDesc") {
-
-                events.sort((a, b) =>
-                    b.name.localeCompare(a.name)
-                );
-
-            }
-
-            if (value === "dateAsc") {
-
-                events.sort((a, b) =>
-                    new Date(a.date) - new Date(b.date)
-                );
-
-            }
-
-            if (value === "dateDesc") {
-
-                events.sort((a, b) =>
-                    new Date(b.date) - new Date(a.date)
-                );
-
-            }
-
-            currentPage = 1;
-            displayEvents();
-
-        });
-
-
-        function displayPagination(totalItems) {
-
-            let totalPages =
-                Math.ceil(totalItems / itemsPerPage);
-
-            let pagination =
-                document.getElementById("pagination");
-
-            pagination.innerHTML = "";
-
-
-            if (totalPages <= 1) {
-                return;
-            }
-
-
-            for (let i = 1; i <= totalPages; i++) {
-
-                let button =
-                    document.createElement("button");
-
-                button.innerText = i;
-
-                if (i === currentPage) {
-                    button.classList.add("active");
-                }
-
-                button.onclick = function () {
-
-                    currentPage = i;
-                    displayEvents();
-
-                };
-
-                pagination.appendChild(button);
-            }
-
-        }
-    </script>
-
 </body>
+
 </html>

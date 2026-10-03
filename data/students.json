@@ -1,50 +1,92 @@
 [
     {
-        "id": 1,
+        "id": "25CS075",
         "name": "Panvi Patel",
-        "studentId": "25CS075",
-        "course": "Computer Science & Engineering",
-        "year": "2nd Year",
-        "email": "panvi@example.com"
+        "department": "CSE",
+        "semester": 3
     },
     {
-        "id": 2,
-        "name": "Aahan Patel",
-        "studentId": "25CS076",
-        "course": "Computer Science & Engineering",
-        "year": "2nd Year",
-        "email": "aahan@example.com"
+        "id": "25CS076",
+        "name": "Aarav Patel",
+        "department": "CSE",
+        "semester": 3
     },
     {
-        "id": 3,
+        "id": "25CS077",
         "name": "Ridan Patel",
-        "studentId": "25CS077",
-        "course": "Information Technology",
-        "year": "2nd Year",
-        "email": "ridan@example.com"
+        "department": "IT",
+        "semester": 3
     },
     {
-        "id": 4,
-        "name": "Aadvik Patel",
-        "studentId": "25CS078",
-        "course": "Computer Engineering",
-        "year": "2nd Year",
-        "email": "aadvik@example.com"
+        "id": "25CS078",
+        "name": "Ruhan Mehta",
+        "department": "CSE",
+        "semester": 3
     },
     {
-        "id": 5,
-        "name": "Ruhan Patel",
-        "studentId": "25CS079",
-        "course": "Computer Science & Engineering",
-        "year": "3rd Year",
-        "email": "ruhan@example.com"
+        "id": "25CS079",
+        "name": "Ananya Desai",
+        "department": "AI",
+        "semester": 3
     },
     {
-        "id": 6,
+        "id": "25CS080",
+        "name": "Yash Patel",
+        "department": "CSE",
+        "semester": 3
+    },
+    {
+        "id": "25CS081",
         "name": "Aadir Patel",
-        "studentId": "25CS080",
-        "course": "Information Technology",
-        "year": "3rd Year",
-        "email": "aadir@example.com"
+        "department": "IT",
+        "semester": 3
+    },
+    {
+        "id": "25CS082",
+        "name": "Meet Patel",
+        "department": "CSE",
+        "semester": 3
+    },
+    {
+        "id": "25CS083",
+        "name": "Krisha Joshi",
+        "department": "AI",
+        "semester": 3
+    },
+    {
+        "id": "25CS084",
+        "name": "Harsh Parmar",
+        "department": "CSE",
+        "semester": 3
+    },
+    {
+        "id": "25CS085",
+        "name": "Mahi Shah",
+        "department": "IT",
+        "semester": 3
+    },
+    {
+        "id": "25CS086",
+        "name": "Dev Patel",
+        "department": "CSE",
+        "semester": 3
+    },
+    {
+        "id": "25CS087",
+        "name": "Jiya Mehta",
+        "department": "AI",
+        "semester": 3
+    },
+    {
+        "id": "25CS088",
+        "name": "Om Desai",
+        "department": "CSE",
+        "semester": 3
+    },
+    {
+        "id": "25CS089",
+        "name": "Hetvi Patel",
+        "department": "IT",
+        "semester": 3
     }
 ]

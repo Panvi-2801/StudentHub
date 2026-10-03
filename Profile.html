@@ -221,6 +221,30 @@
             color: #38BDF8;
         }
 
+        /* ---------- Sidebar Help Card (same as Dashboard) ---------- */
+        .help-card {
+            background: var(--card-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .help-card h4 {
+            color: #0B2545;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        body.dark-mode .help-card h4 {
+            color: #38BDF8;
+        }
+
+        .sidebar .widget-box {
+            margin-top: 20px;
+        }
+
         /* Profile Content Area */
         .content-area {
             display: flex;
@@ -459,6 +483,13 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            /* Sidebar stays a neat card and follows the page while scrolling */
+            .sidebar {
+                align-self: start;
+                position: sticky;
+                top: 20px;
+            }
+
         }
 
     </style>
@@ -534,79 +565,30 @@
         <aside class="sidebar">
 
             <ul class="sidebar-menu">
-
-                <li>
-                    <a href="Dashboard.html">
-                        📊 Dashboard
-                    </a>
-                </li>
-
-                <li>
-                    <a href="Home.html">
-                        🏠 Home
-                    </a>
-                </li>
-
-                <li>
-                    <a href="Profile.html" class="active">
-                        👤 Profile
-                    </a>
-                </li>
-
-                <li>
-                    <a href="setting.html">
-                        ⚙️ Settings
-                    </a>
-                </li>
-
+                <li><a href="Dashboard.html">📊 Dashboard</a></li>
+                <li><a href="Profile.html">💻 Projects</a></li>
+                <li><a href="Attendance.html">📅 Attendance</a></li>
+                <li><a href="Result.html">📈 Result</a></li>
+                <li><a href="Profile.html" class="active">👤 Profile</a></li>
+                <li><a href="setting.html">⚙️ Setting</a></li>
             </ul>
 
-
-            <!-- Widget 1: Profile Progress -->
+            <!-- Profile Progress (kept for the Profile page) -->
             <div class="widget-box">
-
                 <h4>📈 Profile Status</h4>
-
                 <p style="font-size: 13px; margin-bottom: 8px; color: var(--text-sub);">
                     Your profile is 85% complete.
                 </p>
-
                 <div style="background-color: var(--border-color); border-radius: 4px; height: 8px; width: 100%;">
-
-                    <div style="background-color: #0284C7; width: 85%; height: 8px; border-radius: 4px;">
-                    </div>
-
+                    <div style="background-color: #0284C7; width: 85%; height: 8px; border-radius: 4px;"></div>
                 </div>
-
             </div>
 
-
-            <!-- Widget 2: Quick Links -->
-            <div class="widget-box">
-
-                <h4>🔗 Quick Links</h4>
-
-                <p style="margin: 5px 0;">
-                    <a href="Dashboard.html"
-                       style="text-decoration: none; color: #0284C7;">
-                        📄 My Submissions
-                    </a>
-                </p>
-
-                <p style="margin: 5px 0;">
-                    <a href="Event.html"
-                       style="text-decoration: none; color: #0284C7;">
-                        🎟️ Registered Events
-                    </a>
-                </p>
-
-                <p style="margin: 5px 0;">
-                    <a href="Contact.html"
-                       style="text-decoration: none; color: #0284C7;">
-                        📞 Helpdesk
-                    </a>
-                </p>
-
+            <!-- Need Help card (same as Dashboard) -->
+            <div class="help-card">
+                <h4>🎧 Need Help?</h4>
+                <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 10px;">Facing issues with portal or submissions?</p>
+                <a href="Contact.html" style="color: #0284C7; text-decoration: none; font-weight: bold; font-size: 14px;">Contact Support →</a>
             </div>
 
         </aside>
